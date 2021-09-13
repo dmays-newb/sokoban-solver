@@ -1,0 +1,2 @@
+map.o: map.cpp map.h
+app.o: app.cpp map.h

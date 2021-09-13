@@ -7,14 +7,15 @@
 * Are they passed as **command-line arguments**? ... Probably
 * What's the output?
 
-### Project Architecture
-
-- Makefile
-  - Proper folder hierarchy
-  - output to bin/out
-- Script this setup!
-  - Bash
-
 ### Initstate()
 
 #### Step 1: Get incoming state data
+- ~~Command-line argument~~
+- ~~Print out~~
+- Create object from input state
+
+#### Step 2: Figure out what data structure to use
+- Create test structure
+
+#### Step 3: Create Goal Tester
+- Try on test input
