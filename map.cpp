@@ -1,6 +1,6 @@
 #include "map.h"
-#define DEBUG
-#define DEBUG_READ
+// #define DEBUG
+// #define DEBUG_READ
 
 using namespace std;
 
@@ -30,11 +30,6 @@ void printMapFromFile(ifstream &mapFile)
             cout << line << endl;
         }
     }
-}
-
-void Map::printMapFromObject()
-{
-    // ! Define
 }
 
 void Map::initState(ifstream &mapFile)
@@ -108,3 +103,80 @@ Map::Map(ifstream &mapFile)
     cout << "Robot Position: " << robot.x << ',' << robot.y;
 #endif // DEBUG
 }
+
+// checks potential position (pot) against positions (walls or blocks)
+bool Map::objectCollides(vector<Position> obs, Position pot)
+{
+    for (Position o : obs)
+    {
+        if (o.isSamePosition(pot))
+            return true;
+    }
+    return false;
+}
+
+// Checks if there is a wall or another block in the direction of travel of...
+// .. the pushed block
+bool Map::moveBlockLegal(const Position block)
+{
+    if (objectCollides(walls, block) || objectCollides(blocks, block))
+        return false;
+    return true;
+}
+
+// This will provide the location of the adjacent space
+// which the robot is attempting to move to .. or check for block
+Map::Position::Position(Position in, const unsigned int dir)
+{
+    x = in.x;
+    y = in.y;
+    switch (dir)
+    {
+    case 0:
+        y--;
+        break;
+    case 1:
+        x++;
+        break;
+    case 2:
+        y++;
+        break;
+    case 3:
+        x--;
+        break;
+    default:
+        break;
+    }
+}
+
+bool Map::moveIsLegal(const unsigned int dir)
+{
+    // 0 - 3: up, right, down, left directions
+    Position potentialMove(robot, dir);
+    cout << "Robot Position: " << robot.x << ',' << robot.y << '-'
+         << "Potential move position" << potentialMove.x << ',' << potentialMove.y << endl;
+
+    if (objectCollides(walls, potentialMove))
+    {
+        cout << "Can't move into wall" << endl;
+        return false;
+    }
+    if (objectCollides(blocks, potentialMove))
+    {
+        Position potentialBlockMove(potentialMove, dir);
+        cout << "Potential Block Move Position: " << potentialBlockMove.x << ',' << potentialBlockMove.y << endl;
+        if (moveBlockLegal(potentialBlockMove))
+        {
+            cout << "Can move block" << endl;
+            // Perform move and create new state!
+            return true;
+        }
+        cout << "Cant move block" << endl;
+        return false;
+    }
+    cout << "can move into space" << endl;
+    // Perform move and create new state!
+    return true;
+}
+
+// ! Add another map with a narrow passage

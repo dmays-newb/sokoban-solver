@@ -12,7 +12,8 @@
 #### Step 1: Get incoming state data
 - ~~Command-line argument~~
 - ~~Print out~~
-- Create object from input state
+- ~~Create object from input state~~
+- Check for legal moves .. next state
 
 #### Step 2: Figure out what data structure to use
 - Create test structure

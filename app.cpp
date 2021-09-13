@@ -4,6 +4,7 @@
 
 #include <iostream>
 #include <string>
+#include <vector>
 #include <fstream>
 #include <stdlib.h>
 #include "map.h"
@@ -29,15 +30,18 @@ int main(int argc, char *argv[])
         return 2;
     }
 
-    // if (sokobanFile.is_open())
-    // {
-    //     while (getline(sokobanFile, line))
-    //     {
-    //         cout << line << endl;
-    //     }
-    // }
+    // Initial State
+    Map initialMap(sokobanFile);
 
-    Map map(sokobanFile);
+    // Stick with simple data structure first
+    // Successor State Generator
+    vector<Map> states;
+    states.push_back(initialMap);
+
+    initialMap.moveIsLegal(0);
+    initialMap.moveIsLegal(1);
+    initialMap.moveIsLegal(2);
+    initialMap.moveIsLegal(3);
 
     return 0;
 }
