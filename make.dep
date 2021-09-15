@@ -1,2 +1,3 @@
-map.o: map.cpp map.h
-app.o: app.cpp map.h
+map.o: map.cpp map.h position.h
+position.o: position.cpp position.h
+app.o: app.cpp map.h position.h

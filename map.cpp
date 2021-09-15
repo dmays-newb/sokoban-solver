@@ -1,4 +1,5 @@
 #include "map.h"
+#include <algorithm>
 // #define DEBUG
 // #define DEBUG_READ
 
@@ -40,8 +41,8 @@ void Map::initState(ifstream &mapFile)
     {
         for (unsigned int j = 0; j <= mapWidth; j++)
         {
-            pos.y = i;
-            pos.x = j;
+            pos.setY(i);
+            pos.setX(j);
             current = mapFile.get();
             switch (current)
             {
@@ -62,6 +63,18 @@ void Map::initState(ifstream &mapFile)
             }
         }
     }
+    sort(blocks.begin(), blocks.end());
+    sort(storage.begin(), storage.end());
+}
+
+Map::Map(const Map *rhs)
+{
+    mapWidth = rhs->mapWidth;
+    mapHeight = rhs->mapWidth;
+    walls = rhs->walls;
+    blocks = rhs->blocks;
+    storage = rhs->storage;
+    robot = rhs->robot;
 }
 
 Map::Map(ifstream &mapFile)
@@ -105,11 +118,11 @@ Map::Map(ifstream &mapFile)
 }
 
 // checks potential position (pot) against positions (walls or blocks)
-bool Map::objectCollides(vector<Position> obs, Position pot)
+bool Map::cannotMove(vector<Position> obs, Position pot)
 {
     for (Position o : obs)
     {
-        if (o.isSamePosition(pot))
+        if (o == pot)
             return true;
     }
     return false;
@@ -117,66 +130,90 @@ bool Map::objectCollides(vector<Position> obs, Position pot)
 
 // Checks if there is a wall or another block in the direction of travel of...
 // .. the pushed block
-bool Map::moveBlockLegal(const Position block)
+bool Map::pushBlockIsLegal(const Position block)
 {
-    if (objectCollides(walls, block) || objectCollides(blocks, block))
+    if (cannotMove(walls, block) || cannotMove(blocks, block))
         return false;
     return true;
 }
 
-// This will provide the location of the adjacent space
-// which the robot is attempting to move to .. or check for block
-Map::Position::Position(Position in, const unsigned int dir)
+bool Map::operator==(const Map &rhs)
 {
-    x = in.x;
-    y = in.y;
-    switch (dir)
+    if (!(robot == rhs.robot))
+        return false;
+    return (equal(blocks.begin(), blocks.end(), rhs.blocks.begin(), rhs.blocks.end()));
+}
+
+void Map::printMap()
+{
+    cout << "Block Positions" << endl;
+    for (Position b : blocks)
     {
-    case 0:
-        y--;
-        break;
-    case 1:
-        x++;
-        break;
-    case 2:
-        y++;
-        break;
-    case 3:
-        x--;
-        break;
-    default:
-        break;
+        b.print();
     }
+    cout << '\n'
+         << "Storage Positions" << endl;
+    for (Position s : storage)
+    {
+        s.print();
+    }
+    cout << endl;
+    cout << "Robot Position:";
+    robot.print();
+    cout << endl;
 }
 
 bool Map::moveIsLegal(const unsigned int dir)
 {
     // 0 - 3: up, right, down, left directions
     Position potentialMove(robot, dir);
-    cout << "Robot Position: " << robot.x << ',' << robot.y << '-'
-         << "Potential move position" << potentialMove.x << ',' << potentialMove.y << endl;
+    // cout << "Robot Position: " << robot.getX() << ',' << robot.getY() << '-'
+    //  << "Potential move position" << potentialMove.getX() << ',' << potentialMove.getY() << endl;
 
-    if (objectCollides(walls, potentialMove))
+    if (cannotMove(walls, potentialMove))
     {
-        cout << "Can't move into wall" << endl;
+        // cout << "Can't move into wall" << endl;
         return false;
     }
-    if (objectCollides(blocks, potentialMove))
+    if (cannotMove(blocks, potentialMove))
     {
         Position potentialBlockMove(potentialMove, dir);
-        cout << "Potential Block Move Position: " << potentialBlockMove.x << ',' << potentialBlockMove.y << endl;
-        if (moveBlockLegal(potentialBlockMove))
+
+        auto it = find(blocks.begin(), blocks.end(), potentialMove);
+        int blockIndex = it - blocks.begin();
+
+        cout << "Potential Block Move Position: " << potentialBlockMove.getX() << ',' << potentialBlockMove.getY() << endl;
+        if (pushBlockIsLegal(potentialBlockMove))
         {
             cout << "Can move block" << endl;
-            // Perform move and create new state!
+            // ! Perform move and create new state
+            // Create new map using copy constructor
+            // potentialBlockMove + dir  OR send index plux direction
+            // !mapCopy.moveBlock(int indexOfBlock, dir)
+            // ! utilize movePlayer(dir) too
+            // block which is equal to potentialBlockMove
+            // move according to dir
+            // dont forget to move robot
             return true;
         }
         cout << "Cant move block" << endl;
         return false;
     }
-    cout << "can move into space" << endl;
-    // Perform move and create new state!
+    cout << "----------------------" << '\n'
+         << "can move into space. "
+         << "direction #: " << dir
+         << ". Robot Original Position: ";
+    this->robot.print();
+    cout << endl;
+    Map newMap = new Map(*this);
+    newMap.moveRobot(dir);
+    newMap.printMap();
     return true;
 }
 
-// ! Add another map with a narrow passage
+void Map::moveRobot(unsigned int dir)
+{
+    Position newPosition(robot, dir);
+    robot.setX(newPosition.getX());
+    robot.setY(newPosition.getY());
+}

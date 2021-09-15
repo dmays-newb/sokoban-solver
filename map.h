@@ -4,21 +4,10 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include "position.h"
 
 class Map
 {
-public:
-    struct Position
-    {
-        unsigned int x;
-        unsigned int y;
-
-        Position();
-        // Takes direction input and creates new position
-        Position(Position in, const unsigned int dir);
-        bool isSamePosition(Position in);
-    };
-
 private:
     unsigned int mapWidth;
     unsigned int mapHeight;
@@ -31,32 +20,27 @@ private:
 public:
     // construct a map from a map file input
     Map(std::ifstream &mapFile);
+    Map(const Map *rhs);
 
-    // copy construct + direction?
-    //Map(Map mapToCopy, const unsigned int dir);
+    bool operator==(const Map &rhs);
+    void printMap();
 
     // initialize map from inputstate
     void initState(std::ifstream &mapFile);
 
     // find legal moves to next state
     // receives 0 - 3; u, r, d, left
-
-    bool objectCollides(std::vector<Position> obs, Position pot);
     bool moveIsLegal(const unsigned int dir);
-    bool moveBlockLegal(const Position);
+    bool pushBlockIsLegal(const Position);
+    bool cannotMove(std::vector<Position> obs, Position pot);
+    Position getRobot() { return robot; }
+    void moveRobot(unsigned int dir);
+
+    // ! change moveIsLegal to attempt move?
+    // ? return a map
+
+    // ! Check for goal attainment
+    // Does blocks... equal storage?? What if there are more blocks than storage..
 };
-
-inline Map::Position::Position()
-{
-    x = 0;
-    y = 0;
-}
-
-inline bool Map::Position::isSamePosition(Position in)
-{
-    if (x == in.x && y == in.y)
-        return true;
-    return false;
-}
 
 #endif // MAP_H

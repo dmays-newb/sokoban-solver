@@ -38,10 +38,17 @@ int main(int argc, char *argv[])
     vector<Map> states;
     states.push_back(initialMap);
 
+    // ! This'll have to go into a new file .. like a factory
     initialMap.moveIsLegal(0);
     initialMap.moveIsLegal(1);
     initialMap.moveIsLegal(2);
     initialMap.moveIsLegal(3);
 
+    // cout << "Do maps match?"
+    //      << ": ";
+    // if (initialMap == mapCopy)
+    //     cout << "Yes" << endl;
+    // else
+    //     cout << "No" << endl;
     return 0;
 }
