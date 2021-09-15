@@ -35,6 +35,7 @@ public:
     bool cannotMove(std::vector<Position> obs, Position pot);
     Position getRobot() { return robot; }
     void moveRobot(unsigned int dir);
+    void moveBlock(int index, unsigned int dir);
 
     // ! change moveIsLegal to attempt move?
     // ? return a map

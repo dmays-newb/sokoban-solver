@@ -217,3 +217,11 @@ void Map::moveRobot(unsigned int dir)
     robot.setX(newPosition.getX());
     robot.setY(newPosition.getY());
 }
+
+//! Test
+void Map::moveBlock(int index, unsigned int dir)
+{
+    Position newPosition(blocks[index], dir);
+    blocks[index].setX(newPosition.getX());
+    blocks[index].setY(newPosition.getY());
+}
