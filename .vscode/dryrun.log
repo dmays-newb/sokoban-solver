@@ -2,20 +2,18 @@ make --dry-run --always-make --keep-going --print-directory
 make: Entering directory '/mnt/c/Users/drm20/projects/cs480-assg1/sokoban-solver'
 touch map.d
  
+touch search.d
+ 
 touch position.d
  
 touch app.d
-cat map.d position.d app.d > make.dep
- 
-make: Warning: File 'make.dep' has modification time 0.37 s in the future
+cat map.d search.d position.d app.d > make.dep
  
 g++ -g -std=c++17 -MMD -pthread -D_GLIBCXX_DEBUG -Wall -o map.o -c map.cpp
+g++ -g -std=c++17 -MMD -pthread -D_GLIBCXX_DEBUG -Wall -o search.o -c search.cpp
 g++ -g -std=c++17 -MMD -pthread -D_GLIBCXX_DEBUG -Wall -o position.o -c position.cpp
- 
 g++ -g -std=c++17 -MMD -pthread -D_GLIBCXX_DEBUG -Wall -o app.o -c app.cpp
-g++ -g -std=c++17 -MMD -pthread -D_GLIBCXX_DEBUG -Wall  -o sokoban-solver map.o position.o app.o 
-g++ -g -std=c++17 -MMD -pthread -D_GLIBCXX_DEBUG -Wall  -o unittest map.o position.o app.o 
+g++ -g -std=c++17 -MMD -pthread -D_GLIBCXX_DEBUG -Wall  -o sokoban-solver map.o search.o position.o app.o 
+g++ -g -std=c++17 -MMD -pthread -D_GLIBCXX_DEBUG -Wall  -o unittest map.o search.o position.o app.o 
 make: Leaving directory '/mnt/c/Users/drm20/projects/cs480-assg1/sokoban-solver'
- 
-make: warning:  Clock skew detected.  Your build may be incomplete.
  

@@ -23,3 +23,8 @@ Position::Position(const Position &in, const unsigned int dir)
         break;
     }
 }
+
+unsigned int Position::position_hash()
+{
+    return (((x + y) * (x + y + 1)) / 2) + y;
+}

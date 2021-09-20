@@ -1,3 +1,4 @@
 map.o: map.cpp map.h position.h
+search.o: search.cpp search.h map.h position.h
 position.o: position.cpp position.h
-app.o: app.cpp map.h position.h
+app.o: app.cpp map.h position.h search.h

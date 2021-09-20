@@ -6,7 +6,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Wed Sep 15 16:29:12 2021
+# Make data base, printed on Mon Sep 20 15:00:01 2021
 
 # Variables
 
@@ -71,7 +71,7 @@ VSCODE_CWD = /mnt/c/Program Files/Microsoft VS Code
 # default
 MAKE_HOST := x86_64-pc-linux-gnu
 # environment
-PATH = /home/drm2010/.vscode-server/bin/507ce72a4466fbb27b715c3722558bb15afa9f48/bin:/home/drm2010/.sdkman/candidates/gradle/current/bin:/home/drm2010/.nvm/versions/node/v16.3.0/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/mnt/c/Users/drm20/AppData/Local/Programs/Python/Python39/Scripts/:/mnt/c/Users/drm20/AppData/Local/Programs/Python/Python39/:/mnt/c/Program Files (x86)/Common Files/Oracle/Java/javapath:/mnt/c/Windows/system32:/mnt/c/Windows:/mnt/c/Windows/System32/Wbem:/mnt/c/Windows/System32/WindowsPowerShell/v1.0/:/mnt/c/Windows/System32/OpenSSH/:/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common:/mnt/c/Program Files/NVIDIA Corporation/NVIDIA NvDLISR:/mnt/c/WINDOWS/system32:/mnt/c/WINDOWS:/mnt/c/WINDOWS/System32/Wbem:/mnt/c/WINDOWS/System32/WindowsPowerShell/v1.0/:/mnt/c/WINDOWS/System32/OpenSSH/:/mnt/c/Program Files/PuTTY/:/mnt/c/Program Files/Microsoft VS Code/bin:/mnt/c/Program Files/dotnet/:/mnt/c/Program Files/nodejs/:/mnt/c/ProgramData/chocolatey/bin:/mnt/c/Program Files/Git/cmd:/mnt/c/Program Files (x86)/Calibre2/:/mnt/c/Users/drm20/AppData/Local/Microsoft/WindowsApps:/mnt/c/Program Files/JetBrains/PyCharm Community Edition 2020.3.1/bin:/mnt/c/Program Files/Java/java-1.8.0-openjdk-1.8.0.282-1.b08.dev.redhat.windows.x86_64/bin:/mnt/c/Users/drm20/AppData/Roaming/npm:/snap/bin
+PATH = /home/drm2010/.vscode-server/bin/507ce72a4466fbb27b715c3722558bb15afa9f48/bin:/home/drm2010/.sdkman/candidates/gradle/current/bin:/home/drm2010/.nvm/versions/node/v16.3.0/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/mnt/c/Users/drm20/AppData/Local/Programs/Python/Python39/Scripts/:/mnt/c/Users/drm20/AppData/Local/Programs/Python/Python39/:/mnt/c/Program Files (x86)/Common Files/Oracle/Java/javapath:/mnt/c/Windows/system32:/mnt/c/Windows:/mnt/c/Windows/System32/Wbem:/mnt/c/Windows/System32/WindowsPowerShell/v1.0/:/mnt/c/Windows/System32/OpenSSH/:/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common:/mnt/c/WINDOWS/system32:/mnt/c/WINDOWS:/mnt/c/WINDOWS/System32/Wbem:/mnt/c/WINDOWS/System32/WindowsPowerShell/v1.0/:/mnt/c/WINDOWS/System32/OpenSSH/:/mnt/c/Program Files/PuTTY/:/mnt/c/Program Files/Microsoft VS Code/bin:/mnt/c/Program Files/dotnet/:/mnt/c/Program Files/nodejs/:/mnt/c/ProgramData/chocolatey/bin:/mnt/c/Program Files/Git/cmd:/mnt/c/Program Files (x86)/Calibre2/:/mnt/c/Users/drm20/AppData/Local/Microsoft/WindowsApps:/mnt/c/Program Files/JetBrains/PyCharm Community Edition 2020.3.1/bin:/mnt/c/Program Files/Java/java-1.8.0-openjdk-1.8.0.282-1.b08.dev.redhat.windows.x86_64/bin:/mnt/c/Users/drm20/AppData/Roaming/npm:/snap/bin
 # environment
 SDKMAN_DIR = /home/drm2010/.sdkman
 # environment
@@ -83,7 +83,7 @@ SDKMAN_PLATFORM = linuxx64
 # environment
 VSCODE_LOG_STACK = false
 # environment
-VSCODE_IPC_HOOK_CLI = /tmp/vscode-ipc-651ec89d-b18e-4760-b4e5-6680f0eca385.sock
+VSCODE_IPC_HOOK_CLI = /tmp/vscode-ipc-0298d290-d7c7-40ff-96f0-668f3aca3d7a.sock
 # makefile (from 'makefile', line 46)
 DEPENDENCIES = $(CPPS:%.cpp=%.d)
 # default
@@ -95,7 +95,7 @@ LS_COLORS = rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:
 # automatic
 %F = $(notdir $%)
 # environment
-DISPLAY = 172.19.112.1:0
+DISPLAY = 172.21.224.1:0
 # environment
 VSCODE_PIPE_LOGGING = true
 # environment
@@ -107,7 +107,7 @@ TESTOBJS = $(TESTCPPS:%.cpp=%.o)
 # makefile (from 'makefile', line 20)
 LFLAGSx = -fuse-ld=gold -pthread
 # environment
-WSL_INTEROP = /run/WSL/12_interop
+WSL_INTEROP = /run/WSL/13_interop
 # environment
 VSCODE_AMD_ENTRYPOINT = vs/server/remoteExtensionHostProcess
 # environment
@@ -208,8 +208,10 @@ VSCODE_EXTHOST_WILL_SEND_SOCKET = true
 MAINPROG = sokoban-solver
 # environment
 WSL_DISTRO_NAME = Ubuntu-20.04
+# environment
+MOTD_SHOWN = update-motd
 # variable set hash-table stats:
-# Load=99/1024=10%, Rehash=0, Collisions=7/149=5%
+# Load=100/1024=10%, Rehash=0, Collisions=7/150=5%
 
 # Pattern-specific Variable Values
 
@@ -217,9 +219,9 @@ WSL_DISTRO_NAME = Ubuntu-20.04
 
 # Directories
 
-# . (device 42, inode 4785074605348068): 24 files, no impossibilities.
+# . (device 46, inode 4785074605348068): 33 files, no impossibilities.
 
-# 24 files, no impossibilities in 1 directories.
+# 33 files, no impossibilities in 1 directories.
 
 # Implicit Rules
 
@@ -238,7 +240,7 @@ WSL_DISTRO_NAME = Ubuntu-20.04
 app.d: app.cpp
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: 'app'
-#  Last modified 2021-09-15 16:29:11.8133157
+#  Last modified 2021-09-20 15:00:00.5880778
 #  File has been updated.
 #  Successfully updated.
 #  recipe to execute (from 'makefile', line 51):
@@ -261,29 +263,35 @@ position.o: position.cpp position.h
 map.d: map.cpp
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: 'map'
-#  Last modified 2021-09-15 16:29:11.8033156
+#  Last modified 2021-09-20 15:00:00.5690767
 #  File has been updated.
 #  Successfully updated.
 #  recipe to execute (from 'makefile', line 51):
 	touch $@
 
-app.o: app.cpp map.h position.h
+app.o: app.cpp map.h position.h search.h
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
 
 # Not a target:
 makefile:
+ 
 #  Implicit rule search has been done.
 #  Last modified 2021-09-13 08:44:22.5472697
- 
 #  File has been updated.
 #  Successfully updated.
+
+# Not a target:
+search.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 map.o: map.cpp map.cpp map.h position.h
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: 'map'
-#  Last modified 2021-09-15 12:49:39.2493726
+#  Last modified 2021-09-20 11:48:43.2828185
 #  File has been updated.
 #  Needs to be updated (-q is set).
 # automatic
@@ -301,11 +309,18 @@ map.o: map.cpp map.cpp map.h position.h
 # automatic
 # ^ := map.cpp map.h position.h
 # automatic
-# ? := map.cpp map.h
+# ? := map.cpp map.h position.h
 # variable set hash-table stats:
 # Load=8/32=25%, Rehash=0, Collisions=1/15=7%
 #  recipe to execute (from 'makefile', line 54):
 	$(CXX) $(CPPFLAGS) -o $@ -c $*.cpp
+
+# Not a target:
+search.cpp:
+#  Implicit rule search has been done.
+#  Last modified 2021-09-20 12:46:09.3157481
+#  File has been updated.
+#  Successfully updated.
 
 # Not a target:
 .DEFAULT:
@@ -313,9 +328,9 @@ map.o: map.cpp map.cpp map.h position.h
 #  Modification time never checked.
 #  File has not been updated.
 
-make.dep: map.d position.d app.d
+make.dep: map.d search.d position.d app.d
 #  Implicit rule search has not been done.
-#  Last modified 2021-09-15 16:29:11.8258401
+#  Last modified 2021-09-20 15:00:00.6076024
 #  File has been updated.
 #  Successfully updated.
 #  recipe to execute (from 'makefile', line 80):
@@ -324,9 +339,18 @@ make.dep: map.d position.d app.d
 # Not a target:
 position.h:
 #  Implicit rule search has been done.
-#  Last modified 2021-09-15 11:10:47.224223
+#  Last modified 2021-09-20 12:14:21.3273064
 #  File has been updated.
 #  Successfully updated.
+
+search.d: search.cpp
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'search'
+#  Last modified 2021-09-20 15:00:00.5766313
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'makefile', line 51):
+	touch $@
 
 clean:
 #  Implicit rule search has not been done.
@@ -338,11 +362,11 @@ clean:
 # Not a target:
 position.cpp:
 #  Implicit rule search has been done.
-#  Last modified 2021-09-15 10:55:54.9149916
+#  Last modified 2021-09-20 12:16:08.1714604
 #  File has been updated.
 #  Successfully updated.
 
-unittest: map.o position.o app.o
+unittest: map.o search.o position.o app.o
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
@@ -352,7 +376,7 @@ unittest: map.o position.o app.o
 position.d: position.cpp
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: 'position'
-#  Last modified 2021-09-15 16:29:11.8093166
+#  Last modified 2021-09-20 15:00:00.5820737
 #  File has been updated.
 #  Successfully updated.
 #  recipe to execute (from 'makefile', line 51):
@@ -361,20 +385,25 @@ position.d: position.cpp
 # Not a target:
 app.cpp:
 #  Implicit rule search has been done.
-#  Last modified 2021-09-15 12:26:03.6495419
+#  Last modified 2021-09-20 11:21:31.7171666
 #  File has been updated.
 #  Successfully updated.
 
 # Not a target:
 map.h:
 #  Implicit rule search has been done.
-#  Last modified 2021-09-15 12:56:22.7730998
+#  Last modified 2021-09-20 12:21:06.5845807
 #  File has been updated.
 #  Successfully updated.
 
-sokoban-solver: map.o position.o app.o
+search.o: search.cpp search.h map.h position.h
 #  Implicit rule search has not been done.
-#  Last modified 2021-09-15 12:49:39.8418756
+#  Modification time never checked.
+#  File has not been updated.
+
+sokoban-solver: map.o search.o position.o app.o
+#  Implicit rule search has not been done.
+#  Last modified 2021-09-20 11:48:44.8488826
 #  File has been updated.
 #  Needs to be updated (-q is set).
 # variable set hash-table stats:
@@ -393,24 +422,24 @@ documentation:
 # Not a target:
 map.cpp:
 #  Implicit rule search has been done.
-#  Last modified 2021-09-15 12:56:15.5340737
+#  Last modified 2021-09-20 12:17:17.3871258
 #  File has been updated.
 #  Successfully updated.
 
 # files hash-table stats:
-# Load=20/1024=2%, Rehash=0, Collisions=0/67=0%
+# Load=24/1024=2%, Rehash=0, Collisions=0/83=0%
 # VPATH Search Paths
 
 # No 'vpath' search paths.
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 37 / storage = 310 B / avg = 8 B
-# current buf: size = 8162 B / used = 310 B / count = 37 / avg = 8 B
+# strcache buffers: 1 (0) / strings = 47 / storage = 407 B / avg = 8 B
+# current buf: size = 8162 B / used = 407 B / count = 47 / avg = 8 B
 
-# strcache performance: lookups = 88 / hit rate = 57%
+# strcache performance: lookups = 110 / hit rate = 57%
 # hash-table stats:
-# Load=37/8192=0%, Rehash=0, Collisions=1/88=1%
-# Finished Make data base on Wed Sep 15 16:29:12 2021
+# Load=47/8192=1%, Rehash=0, Collisions=5/110=5%
+# Finished Make data base on Mon Sep 20 15:00:01 2021
 
  

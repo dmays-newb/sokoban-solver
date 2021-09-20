@@ -20,6 +20,7 @@ public:
     bool operator==(const Position &rhs);
     bool operator<(const Position &rhs);
     void print();
+    unsigned int position_hash();
 };
 
 inline Position::Position()

@@ -9,18 +9,25 @@
 class Map
 {
 private:
-    unsigned int mapWidth;
-    unsigned int mapHeight;
+    static unsigned int mapWidth;
+    static unsigned int mapHeight;
+    static std::vector<Position> walls;
+    static std::vector<Position> storage;
 
-    std::vector<Position> walls;
+    int directionFromParent;
+    Map *parent;
+    // bool goalState;
+
     std::vector<Position> blocks;
-    std::vector<Position> storage;
     Position robot;
+
+    // std::string hash;
 
 public:
     // construct a map from a map file input
+    // Test Map!
     Map(std::ifstream &mapFile);
-    Map(const Map *rhs);
+    Map(const Map *rhs, int dir);
 
     bool operator==(const Map &rhs);
     void printMap();
@@ -30,18 +37,25 @@ public:
 
     // find legal moves to next state
     // receives 0 - 3; u, r, d, left
-    bool moveIsLegal(const unsigned int dir);
+    Map *findNextStateFromDirection(const unsigned int dir);
     bool pushBlockIsLegal(const Position);
     bool cannotMove(std::vector<Position> obs, Position pot);
     Position getRobot() { return robot; }
     void moveRobot(unsigned int dir);
     void moveBlock(int index, unsigned int dir);
+    bool goalReached();
+    std::string keyGenerator();
+    int mapHashFunction();
+    // ! Destructor?
+};
 
-    // ! change moveIsLegal to attempt move?
-    // ? return a map
-
-    // ! Check for goal attainment
-    // Does blocks... equal storage?? What if there are more blocks than storage..
+class MapHash
+{
+public:
+    std::size_t operator()(const Map &m)
+    {
+        for (Position p :)
+    }
 };
 
 #endif // MAP_H

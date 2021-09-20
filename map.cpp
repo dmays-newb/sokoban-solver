@@ -5,6 +5,11 @@
 
 using namespace std;
 
+unsigned int Map::mapWidth;
+unsigned int Map::mapHeight;
+vector<Position> Map::walls;
+vector<Position> Map::storage;
+
 void getMapDimensions(ifstream &mapFile, int &w, int &h)
 {
     string line;
@@ -47,13 +52,13 @@ void Map::initState(ifstream &mapFile)
             switch (current)
             {
             case 'O':
-                walls.push_back(pos);
+                Map::walls.push_back(pos);
                 break;
             case 'B':
                 blocks.push_back(pos);
                 break;
             case 'S':
-                storage.push_back(pos);
+                Map::storage.push_back(pos);
                 break;
             case 'R':
                 robot = pos;
@@ -63,18 +68,13 @@ void Map::initState(ifstream &mapFile)
             }
         }
     }
-    sort(blocks.begin(), blocks.end());
-    sort(storage.begin(), storage.end());
 }
 
-Map::Map(const Map *rhs)
+Map::Map(const Map *rhs, int dir)
 {
-    mapWidth = rhs->mapWidth;
-    mapHeight = rhs->mapWidth;
-    walls = rhs->walls;
     blocks = rhs->blocks;
-    storage = rhs->storage;
     robot = rhs->robot;
+    directionFromParent = dir;
 }
 
 Map::Map(ifstream &mapFile)
@@ -83,13 +83,17 @@ Map::Map(ifstream &mapFile)
     getMapDimensions(mapFile, width, height);
     mapWidth = width;
     mapHeight = height;
+    parent = nullptr;
+    int directionFromParent = -1;
 
-    // Need to get back to beginning of file
+    // Get back to beginning of file
     mapFile.clear();
     mapFile.seekg(0);
 
-    // ! Get Char for Each Space of State
+    // Get Char for Each Space of State
     initState(mapFile);
+
+    // hashGenerator();
 
 #ifdef DEBUG_READ
     cout << "Walls: ";
@@ -163,17 +167,17 @@ void Map::printMap()
     cout << endl;
 }
 
-bool Map::moveIsLegal(const unsigned int dir)
+Map *Map::findNextStateFromDirection(const unsigned int dir)
 {
     // 0 - 3: up, right, down, left directions
     Position potentialMove(robot, dir);
     // cout << "Robot Position: " << robot.getX() << ',' << robot.getY() << '-'
-    //  << "Potential move position" << potentialMove.getX() << ',' << potentialMove.getY() << endl;
+    //      << "Potential move position" << potentialMove.getX() << ',' << potentialMove.getY() << endl;
 
     if (cannotMove(walls, potentialMove))
     {
         // cout << "Can't move into wall" << endl;
-        return false;
+        return nullptr;
     }
     if (cannotMove(blocks, potentialMove))
     {
@@ -182,33 +186,31 @@ bool Map::moveIsLegal(const unsigned int dir)
         auto it = find(blocks.begin(), blocks.end(), potentialMove);
         int blockIndex = it - blocks.begin();
 
-        cout << "Potential Block Move Position: " << potentialBlockMove.getX() << ',' << potentialBlockMove.getY() << endl;
+        // cout << "Potential Block Move Position: " << potentialBlockMove.getX() << ',' << potentialBlockMove.getY() << endl;
         if (pushBlockIsLegal(potentialBlockMove))
         {
-            cout << "Can move block" << endl;
-            // ! Perform move and create new state
-            // Create new map using copy constructor
-            // potentialBlockMove + dir  OR send index plux direction
-            // !mapCopy.moveBlock(int indexOfBlock, dir)
-            // ! utilize movePlayer(dir) too
-            // block which is equal to potentialBlockMove
-            // move according to dir
-            // dont forget to move robot
-            return true;
+            // cout << "Can move block" << endl;
+            int dirToChild = (int)dir;
+            Map *newMap = new Map(this, dirToChild);
+            newMap->moveBlock(blockIndex, dir);
+            newMap->moveRobot(dir);
+            // newMap->hashGenerator();
+            return newMap;
         }
-        cout << "Cant move block" << endl;
-        return false;
+        // cout << "Cant move block" << endl;
+        return nullptr;
     }
-    cout << "----------------------" << '\n'
-         << "can move into space. "
-         << "direction #: " << dir
-         << ". Robot Original Position: ";
-    this->robot.print();
-    cout << endl;
-    Map newMap = new Map(*this);
-    newMap.moveRobot(dir);
-    newMap.printMap();
-    return true;
+    // cout << "----------------------" << '\n'
+    //      << "can move into space. "
+    //      << "direction #: " << dir
+    //      << ". Robot Original Position: ";
+    // this->robot.print();
+    // cout << endl;
+    int dirToChild = (int)dir;
+    Map *newMap = new Map(this, dirToChild);
+    newMap->moveRobot(dir);
+    // newMap->hashGenerator();
+    return newMap;
 }
 
 void Map::moveRobot(unsigned int dir)
@@ -218,10 +220,41 @@ void Map::moveRobot(unsigned int dir)
     robot.setY(newPosition.getY());
 }
 
-//! Test
 void Map::moveBlock(int index, unsigned int dir)
 {
     Position newPosition(blocks[index], dir);
     blocks[index].setX(newPosition.getX());
     blocks[index].setY(newPosition.getY());
+    moveRobot(dir);
+}
+
+bool Map::goalReached()
+{
+    int matchCount = 0;
+    for (Position s : storage)
+    {
+        for (Position b : blocks)
+        {
+            if (b == s)
+                matchCount++;
+        }
+    }
+    if (matchCount == storage.size())
+        return true;
+    return false;
+}
+
+string Map::keyGenerator()
+{
+    string key = "";
+    sort(blocks.begin(), blocks.end());
+
+    for (Position p : blocks)
+    {
+        key.append(std::to_string(p.getX()));
+        key.append(std::to_string(p.getY()));
+    }
+
+    key.append(std::to_string(robot.getX()));
+    key.append(std::to_string(robot.getY()));
 }
