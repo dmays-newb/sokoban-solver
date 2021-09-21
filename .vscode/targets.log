@@ -6,7 +6,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Mon Sep 20 15:00:01 2021
+# Make data base, printed on Tue Sep 21 12:00:59 2021
 
 # Variables
 
@@ -71,7 +71,9 @@ VSCODE_CWD = /mnt/c/Program Files/Microsoft VS Code
 # default
 MAKE_HOST := x86_64-pc-linux-gnu
 # environment
-PATH = /home/drm2010/.vscode-server/bin/507ce72a4466fbb27b715c3722558bb15afa9f48/bin:/home/drm2010/.sdkman/candidates/gradle/current/bin:/home/drm2010/.nvm/versions/node/v16.3.0/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/mnt/c/Users/drm20/AppData/Local/Programs/Python/Python39/Scripts/:/mnt/c/Users/drm20/AppData/Local/Programs/Python/Python39/:/mnt/c/Program Files (x86)/Common Files/Oracle/Java/javapath:/mnt/c/Windows/system32:/mnt/c/Windows:/mnt/c/Windows/System32/Wbem:/mnt/c/Windows/System32/WindowsPowerShell/v1.0/:/mnt/c/Windows/System32/OpenSSH/:/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common:/mnt/c/WINDOWS/system32:/mnt/c/WINDOWS:/mnt/c/WINDOWS/System32/Wbem:/mnt/c/WINDOWS/System32/WindowsPowerShell/v1.0/:/mnt/c/WINDOWS/System32/OpenSSH/:/mnt/c/Program Files/PuTTY/:/mnt/c/Program Files/Microsoft VS Code/bin:/mnt/c/Program Files/dotnet/:/mnt/c/Program Files/nodejs/:/mnt/c/ProgramData/chocolatey/bin:/mnt/c/Program Files/Git/cmd:/mnt/c/Program Files (x86)/Calibre2/:/mnt/c/Users/drm20/AppData/Local/Microsoft/WindowsApps:/mnt/c/Program Files/JetBrains/PyCharm Community Edition 2020.3.1/bin:/mnt/c/Program Files/Java/java-1.8.0-openjdk-1.8.0.282-1.b08.dev.redhat.windows.x86_64/bin:/mnt/c/Users/drm20/AppData/Roaming/npm:/snap/bin
+PATH = /home/drm2010/.vscode-server/bin/507ce72a4466fbb27b715c3722558bb15afa9f48/bin:/home/drm2010/.sdkman/candidates/gradle/current/bin:/home/drm2010/.nvm/versions/node/v16.3.0/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/usr/lib/wsl/lib:/mnt/c/Users/drm20/AppData/Local/Programs/Python/Python39/Scripts/:/mnt/c/Users/drm20/AppData/Local/Programs/Python/Python39/:/mnt/c/Program Files (x86)/Common Files/Oracle/Java/javapath:/mnt/c/Windows/system32:/mnt/c/Windows:/mnt/c/Windows/System32/Wbem:/mnt/c/Windows/System32/WindowsPowerShell/v1.0/:/mnt/c/Windows/System32/OpenSSH/:/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common:/mnt/c/WINDOWS/system32:/mnt/c/WINDOWS:/mnt/c/WINDOWS/System32/Wbem:/mnt/c/WINDOWS/System32/WindowsPowerShell/v1.0/:/mnt/c/WINDOWS/System32/OpenSSH/:/mnt/c/Program Files/PuTTY/:/mnt/c/Program Files/Microsoft VS Code/bin:/mnt/c/Program Files/dotnet/:/mnt/c/Program Files/nodejs/:/mnt/c/ProgramData/chocolatey/bin:/mnt/c/Program Files/Git/cmd:/mnt/c/Program Files (x86)/Calibre2/:/mnt/c/WINDOWS/system32:/mnt/c/WINDOWS:/mnt/c/WINDOWS/System32/Wbem:/mnt/c/WINDOWS/System32/WindowsPowerShell/v1.0/:/mnt/c/WINDOWS/System32/OpenSSH/:/mnt/c/Users/drm20/AppData/Local/Microsoft/WindowsApps:/mnt/c/Program Files/JetBrains/PyCharm Community Edition 2020.3.1/bin:/mnt/c/Program Files/Java/java-1.8.0-openjdk-1.8.0.282-1.b08.dev.redhat.windows.x86_64/bin:/mnt/c/Users/drm20/AppData/Roaming/npm:/snap/bin
+# environment
+XDG_RUNTIME_DIR = /mnt/wslg/runtime-dir
 # environment
 SDKMAN_DIR = /home/drm2010/.sdkman
 # environment
@@ -83,7 +85,7 @@ SDKMAN_PLATFORM = linuxx64
 # environment
 VSCODE_LOG_STACK = false
 # environment
-VSCODE_IPC_HOOK_CLI = /tmp/vscode-ipc-0298d290-d7c7-40ff-96f0-668f3aca3d7a.sock
+VSCODE_IPC_HOOK_CLI = /mnt/wslg/runtime-dir/vscode-ipc-1f3bcef1-0ceb-4bbc-b9e6-2d07a667ea5a.sock
 # makefile (from 'makefile', line 46)
 DEPENDENCIES = $(CPPS:%.cpp=%.d)
 # default
@@ -95,7 +97,7 @@ LS_COLORS = rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:
 # automatic
 %F = $(notdir $%)
 # environment
-DISPLAY = 172.21.224.1:0
+DISPLAY = 172.20.0.1:0
 # environment
 VSCODE_PIPE_LOGGING = true
 # environment
@@ -107,7 +109,9 @@ TESTOBJS = $(TESTCPPS:%.cpp=%.o)
 # makefile (from 'makefile', line 20)
 LFLAGSx = -fuse-ld=gold -pthread
 # environment
-WSL_INTEROP = /run/WSL/13_interop
+WSL_INTEROP = /run/WSL/11_interop
+# environment
+PULSE_SERVER = /mnt/wslg/PulseServer
 # environment
 VSCODE_AMD_ENTRYPOINT = vs/server/remoteExtensionHostProcess
 # environment
@@ -188,6 +192,8 @@ HOSTTYPE = x86_64
 ^F = $(notdir $^)
 # default
 SUFFIXES := 
+# environment
+WAYLAND_DISPLAY = wayland-0
 # default
 .INCLUDE_DIRS = /usr/include /usr/local/include /usr/include
 # environment
@@ -208,10 +214,8 @@ VSCODE_EXTHOST_WILL_SEND_SOCKET = true
 MAINPROG = sokoban-solver
 # environment
 WSL_DISTRO_NAME = Ubuntu-20.04
-# environment
-MOTD_SHOWN = update-motd
 # variable set hash-table stats:
-# Load=100/1024=10%, Rehash=0, Collisions=7/150=5%
+# Load=102/1024=10%, Rehash=0, Collisions=7/152=5%
 
 # Pattern-specific Variable Values
 
@@ -219,7 +223,7 @@ MOTD_SHOWN = update-motd
 
 # Directories
 
-# . (device 46, inode 4785074605348068): 33 files, no impossibilities.
+# . (device 65, inode 4785074605348068): 33 files, no impossibilities.
 
 # 33 files, no impossibilities in 1 directories.
 
@@ -240,7 +244,7 @@ MOTD_SHOWN = update-motd
 app.d: app.cpp
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: 'app'
-#  Last modified 2021-09-20 15:00:00.5880778
+#  Last modified 2021-09-21 12:00:58.3897642
 #  File has been updated.
 #  Successfully updated.
 #  recipe to execute (from 'makefile', line 51):
@@ -263,7 +267,7 @@ position.o: position.cpp position.h
 map.d: map.cpp
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: 'map'
-#  Last modified 2021-09-20 15:00:00.5690767
+#  Last modified 2021-09-21 12:00:58.3526552
 #  File has been updated.
 #  Successfully updated.
 #  recipe to execute (from 'makefile', line 51):
@@ -272,11 +276,11 @@ map.d: map.cpp
 app.o: app.cpp map.h position.h search.h
 #  Implicit rule search has not been done.
 #  Modification time never checked.
+ 
 #  File has not been updated.
 
 # Not a target:
 makefile:
- 
 #  Implicit rule search has been done.
 #  Last modified 2021-09-13 08:44:22.5472697
 #  File has been updated.
@@ -330,7 +334,7 @@ search.cpp:
 
 make.dep: map.d search.d position.d app.d
 #  Implicit rule search has not been done.
-#  Last modified 2021-09-20 15:00:00.6076024
+#  Last modified 2021-09-21 12:00:58.4826156
 #  File has been updated.
 #  Successfully updated.
 #  recipe to execute (from 'makefile', line 80):
@@ -346,7 +350,7 @@ position.h:
 search.d: search.cpp
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: 'search'
-#  Last modified 2021-09-20 15:00:00.5766313
+#  Last modified 2021-09-21 12:00:58.3616535
 #  File has been updated.
 #  Successfully updated.
 #  recipe to execute (from 'makefile', line 51):
@@ -376,7 +380,7 @@ unittest: map.o search.o position.o app.o
 position.d: position.cpp
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: 'position'
-#  Last modified 2021-09-20 15:00:00.5820737
+#  Last modified 2021-09-21 12:00:58.3771745
 #  File has been updated.
 #  Successfully updated.
 #  recipe to execute (from 'makefile', line 51):
@@ -440,6 +444,6 @@ map.cpp:
 # strcache performance: lookups = 110 / hit rate = 57%
 # hash-table stats:
 # Load=47/8192=1%, Rehash=0, Collisions=5/110=5%
-# Finished Make data base on Mon Sep 20 15:00:01 2021
+# Finished Make data base on Tue Sep 21 12:00:59 2021
 
  

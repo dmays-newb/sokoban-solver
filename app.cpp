@@ -6,7 +6,8 @@
 #include "map.h"
 #include "search.h"
 
-// #define TESTGOAL
+#define TESTGOAL
+// #define HASHTEST
 
 using namespace std;
 
@@ -35,10 +36,10 @@ int main(int argc, char *argv[])
 #ifdef TESTGOAL
 
     // ! This'll have to go into a new file .. like a factory
-    // initialMap.moveIsLegal(0);
-    // initialMap.moveIsLegal(1);
-    // initialMap.moveIsLegal(2);
-    // initialMap.moveIsLegal(3);
+    initialMap.findNextStateFromDirection(0);
+    initialMap.findNextStateFromDirection(1);
+    initialMap.findNextStateFromDirection(2);
+    initialMap.findNextStateFromDirection(3);
 
     // Test Completion
     initialMap.printMap();
@@ -55,16 +56,22 @@ int main(int argc, char *argv[])
     // cout << "test-state-2. Goal complete = " << initialMap.goalReached() << endl;
 
     // Test Completion of test-state-3
-    initialMap.moveBlock(1, 2);
-    initialMap.moveBlock(1, 3);
-    initialMap.moveBlock(1, 3);
-    initialMap.moveBlock(1, 3);
-    initialMap.moveBlock(1, 0);
-    initialMap.moveBlock(1, 0);
-    initialMap.moveBlock(2, 3);
-    initialMap.moveBlock(2, 2);
-    cout << "test-state-3. Goal complete = " << initialMap.goalReached() << endl;
+    // initialMap.moveBlock(1, 2);
+    // initialMap.moveBlock(1, 3);
+    // initialMap.moveBlock(1, 3);
+    // initialMap.moveBlock(1, 3);
+    // initialMap.moveBlock(1, 0);
+    // initialMap.moveBlock(1, 0);
+    // initialMap.moveBlock(2, 3);
+    // initialMap.moveBlock(2, 2);
+    // cout << "test-state-3. Goal complete = " << initialMap.goalReached() << endl;
 
 #endif // TESTGOAL
+
+#ifdef HASHTEST
+    map_hash hashIt;
+    cout << "Map Hash: " << hashIt(initialMap) << endl;
+#endif // HASHTEST
+
     return 0;
 }

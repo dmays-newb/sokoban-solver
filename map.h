@@ -1,6 +1,7 @@
 #ifndef MAP_H_INCLUDED
 #define MAP_H_INCLUDED
 #include <fstream>
+#include <functional>
 #include <iostream>
 #include <string>
 #include <vector>
@@ -20,42 +21,44 @@ private:
 
     std::vector<Position> blocks;
     Position robot;
-
-    // std::string hash;
+    std::string uniqKey;
 
 public:
-    // construct a map from a map file input
-    // Test Map!
+    // construct root state from a map file input
     Map(std::ifstream &mapFile);
+
+    // constructor for child states
     Map(const Map *rhs, int dir);
+
+    // initialize map spaces from inputstate
+    void initState(std::ifstream &mapFile);
 
     bool operator==(const Map &rhs);
     void printMap();
-
-    // initialize map from inputstate
-    void initState(std::ifstream &mapFile);
+    std::string getKey() const { return uniqKey; }
+    Position getRobot() const { return robot; }
 
     // find legal moves to next state
     // receives 0 - 3; u, r, d, left
     Map *findNextStateFromDirection(const unsigned int dir);
     bool pushBlockIsLegal(const Position);
     bool cannotMove(std::vector<Position> obs, Position pot);
-    Position getRobot() { return robot; }
     void moveRobot(unsigned int dir);
     void moveBlock(int index, unsigned int dir);
     bool goalReached();
-    std::string keyGenerator();
-    int mapHashFunction();
+    void keyGenerator();
     // ! Destructor?
 };
 
-class MapHash
-{
-public:
-    std::size_t operator()(const Map &m)
-    {
-        for (Position p :)
-    }
-};
+// custom hash function (functor) for map
+// class map_hash
+// {
+// public:
+//     std::size_t operator()(const Map &m) const
+//     {
+//         long int hash = stol(m.getKey());
+//         return hash;
+//     }
+// };
 
 #endif // MAP_H

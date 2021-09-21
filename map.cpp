@@ -93,7 +93,7 @@ Map::Map(ifstream &mapFile)
     // Get Char for Each Space of State
     initState(mapFile);
 
-    // hashGenerator();
+    keyGenerator();
 
 #ifdef DEBUG_READ
     cout << "Walls: ";
@@ -143,9 +143,9 @@ bool Map::pushBlockIsLegal(const Position block)
 
 bool Map::operator==(const Map &rhs)
 {
-    if (!(robot == rhs.robot))
-        return false;
-    return (equal(blocks.begin(), blocks.end(), rhs.blocks.begin(), rhs.blocks.end()));
+    if (uniqKey.compare(rhs.uniqKey) == 0)
+        return true;
+    return false;
 }
 
 void Map::printMap()
@@ -169,6 +169,8 @@ void Map::printMap()
 
 Map *Map::findNextStateFromDirection(const unsigned int dir)
 {
+    cout << "key: " << uniqKey;
+
     // 0 - 3: up, right, down, left directions
     Position potentialMove(robot, dir);
     // cout << "Robot Position: " << robot.getX() << ',' << robot.getY() << '-'
@@ -194,8 +196,7 @@ Map *Map::findNextStateFromDirection(const unsigned int dir)
             Map *newMap = new Map(this, dirToChild);
             newMap->moveBlock(blockIndex, dir);
             newMap->moveRobot(dir);
-            // newMap->hashGenerator();
-            return newMap;
+            newMap->keyGenerator();
         }
         // cout << "Cant move block" << endl;
         return nullptr;
@@ -209,7 +210,8 @@ Map *Map::findNextStateFromDirection(const unsigned int dir)
     int dirToChild = (int)dir;
     Map *newMap = new Map(this, dirToChild);
     newMap->moveRobot(dir);
-    // newMap->hashGenerator();
+    newMap->keyGenerator();
+    cout << "key: " << newMap->uniqKey;
     return newMap;
 }
 
@@ -244,7 +246,7 @@ bool Map::goalReached()
     return false;
 }
 
-string Map::keyGenerator()
+void Map::keyGenerator()
 {
     string key = "";
     sort(blocks.begin(), blocks.end());
@@ -257,4 +259,6 @@ string Map::keyGenerator()
 
     key.append(std::to_string(robot.getX()));
     key.append(std::to_string(robot.getY()));
+
+    uniqKey = key;
 }
