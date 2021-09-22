@@ -6,7 +6,7 @@
 #include "map.h"
 #include "search.h"
 
-#define TESTGOAL
+// #define TESTGOAL
 // #define HASHTEST
 
 using namespace std;
@@ -32,6 +32,9 @@ int main(int argc, char *argv[])
 
     // Initial State
     Map initialMap(sokobanFile);
+    Search findSolution(initialMap);
+    std::string solution = findSolution.expand();
+    cout << "Potential Solution: " << solution << endl;
 
 #ifdef TESTGOAL
 

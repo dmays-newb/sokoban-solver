@@ -9,14 +9,14 @@ CXX=g++
 ifeq ($(OS),Windows_NT)
 #
 # Flags for Windows compilers
-CPPFLAGS=-g -std=c++17 -MMD -pthread -D_GLIBCXX_DEBUG -Wall
+CPPFLAGS=-g -std=c++2a -MMD -pthread -D_GLIBCXX_DEBUG -Wall
 LFLAGS=
 RM=del /q
 EXE=.exe
 else
 #
 # Flags for Linux & MacOS
-CPPFLAGS=-g -std=c++17 -MMD -pthread -D_GLIBCXX_DEBUG -Wall
+CPPFLAGS=-g -std=c++2a -MMD -pthread -D_GLIBCXX_DEBUG -Wall
 LFLAGSx=-fuse-ld=gold -pthread
 RM=/bin/rm -rf
 EXE=

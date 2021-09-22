@@ -28,15 +28,17 @@ public:
     Map(std::ifstream &mapFile);
 
     // constructor for child states
-    Map(const Map *rhs, int dir);
+    Map(Map *rhs, int dir);
 
     // initialize map spaces from inputstate
     void initState(std::ifstream &mapFile);
 
     bool operator==(const Map &rhs);
     void printMap();
-    std::string getKey() const { return uniqKey; }
+    long long getKey() const { return stoll(uniqKey); }
     Position getRobot() const { return robot; }
+    int getDirectionFromParent() { return directionFromParent; }
+    Map *getParent() { return parent; }
 
     // find legal moves to next state
     // receives 0 - 3; u, r, d, left

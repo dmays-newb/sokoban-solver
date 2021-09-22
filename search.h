@@ -6,16 +6,14 @@
 
 // ? Clean up maps on heap
 
-// ! Hashtable for Closed-List
-// Need to define hash function based on key..
-
-// int hash_function(std::string key);
-
-// ! Queue for Fronteir
-
-class search
+class Search
 {
 private:
-    std::unordered_map<int, Map *> closedList;
-    std::queue<Map *> fronteir;
+    std::unordered_map<long, Map *> closedList;
+    std::queue<Map *> frontier;
+    std::string solutionPath;
+
+public:
+    Search(Map &root);
+    std::string expand();
 };

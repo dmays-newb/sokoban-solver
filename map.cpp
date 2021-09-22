@@ -70,11 +70,12 @@ void Map::initState(ifstream &mapFile)
     }
 }
 
-Map::Map(const Map *rhs, int dir)
+Map::Map(Map *rhs, int dir)
 {
     blocks = rhs->blocks;
     robot = rhs->robot;
     directionFromParent = dir;
+    parent = rhs;
 }
 
 Map::Map(ifstream &mapFile)
@@ -169,7 +170,6 @@ void Map::printMap()
 
 Map *Map::findNextStateFromDirection(const unsigned int dir)
 {
-    cout << "key: " << uniqKey;
 
     // 0 - 3: up, right, down, left directions
     Position potentialMove(robot, dir);
@@ -195,8 +195,8 @@ Map *Map::findNextStateFromDirection(const unsigned int dir)
             int dirToChild = (int)dir;
             Map *newMap = new Map(this, dirToChild);
             newMap->moveBlock(blockIndex, dir);
-            newMap->moveRobot(dir);
             newMap->keyGenerator();
+            return newMap;
         }
         // cout << "Cant move block" << endl;
         return nullptr;
@@ -211,7 +211,6 @@ Map *Map::findNextStateFromDirection(const unsigned int dir)
     Map *newMap = new Map(this, dirToChild);
     newMap->moveRobot(dir);
     newMap->keyGenerator();
-    cout << "key: " << newMap->uniqKey;
     return newMap;
 }
 
