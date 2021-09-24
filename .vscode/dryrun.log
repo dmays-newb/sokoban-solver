@@ -1,7 +1,5 @@
 make --dry-run --keep-going --print-directory
 make: Entering directory '/mnt/c/Users/drm20/projects/cs480-assg1/sokoban-solver'
-cat map.d search.d position.d app.d > make.dep
- 
 make: Nothing to be done for 'all'.
 make: Leaving directory '/mnt/c/Users/drm20/projects/cs480-assg1/sokoban-solver'
  

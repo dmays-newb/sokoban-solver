@@ -42,6 +42,8 @@ void Map::initState(ifstream &mapFile)
 {
     char current;
     Position pos;
+    bool endOfLine = false;
+
     for (unsigned int i = 0; i <= mapHeight; i++)
     {
         for (unsigned int j = 0; j <= mapWidth; j++)
@@ -49,6 +51,18 @@ void Map::initState(ifstream &mapFile)
             pos.setY(i);
             pos.setX(j);
             current = mapFile.get();
+
+            while (current == '\n' && j <= mapWidth)
+            {
+                pos.setY(i);
+                pos.setX(j);
+                Map::walls.push_back(pos);
+                j++;
+            }
+
+            if (current == '\n')
+                break;
+
             switch (current)
             {
             case 'O':

@@ -4,7 +4,8 @@
 #include <fstream>
 #include <stdlib.h>
 #include "map.h"
-#include "search.h"
+#include "bf_search.h"
+#include "df_search.h"
 
 // #define TESTGOAL
 // #define HASHTEST
@@ -14,26 +15,40 @@ using namespace std;
 int main(int argc, char *argv[])
 {
     // Check Command Line Arguments
-    if (argc != 2)
+    if (argc != 3)
     {
         cerr << "Usage: " << argv[0] << " sokoban_test_file"
              << "\n";
         return 1;
     }
 
+    // Get Search Type
+    string algorithInput = argv[1];
+
     // Open sokoban file
-    ifstream sokobanFile(argv[1]);
+    ifstream sokobanFile(argv[2]);
     if (!sokobanFile)
     {
-        cerr << "Error: " << argv[1] << " could not be opened"
+        cerr << "Error: " << argv[2] << " could not be opened"
              << "\n";
         return 2;
     }
 
-    // Initial State
     Map initialMap(sokobanFile);
-    Search findSolution(initialMap);
-    std::string solution = findSolution.expand();
+    std::string solution;
+
+    if (algorithInput == "bfs")
+    {
+        BF_SEARCH findSolution(initialMap);
+        solution = findSolution.expand();
+    }
+    else if (algorithInput == "dfs")
+    {
+        DF_SEARCH findSolution(initialMap);
+        solution = findSolution.expand();
+    }
+
+    // Initial State
     cout << "Potential Solution: " << solution << endl;
 
 #ifdef TESTGOAL

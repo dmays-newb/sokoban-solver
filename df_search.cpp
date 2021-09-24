@@ -1,4 +1,4 @@
-#include "search.h"
+#include "df_search.h"
 #include "map.h"
 #include <string>
 #include <sstream>
@@ -6,7 +6,7 @@
 
 using namespace std;
 
-string backTrack(Map *s)
+string df_backTrack(Map *s)
 {
     // s->printMap();
 
@@ -30,18 +30,18 @@ string backTrack(Map *s)
     return solutionString;
 }
 
-Search::Search(Map &root)
+DF_SEARCH::DF_SEARCH(Map &root)
 {
     frontier.push(&root);
     solutionPath = "";
 }
 
-string Search::expand()
+string DF_SEARCH::expand()
 {
     Map *parent, *temp = nullptr;
     while ((temp == nullptr) || !(temp->goalReached()))
     {
-        parent = frontier.front();
+        parent = frontier.top();
         frontier.pop();
         for (int i = 0; i < 4; i++)
         {
@@ -62,5 +62,5 @@ string Search::expand()
     }
 
     // return something when temp has reached goal
-    return backTrack(temp);
+    return df_backTrack(temp);
 }

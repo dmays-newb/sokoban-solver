@@ -5,9 +5,9 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
-
-# Make data base, printed on Wed Sep 22 09:16:15 2021
  
+
+# Make data base, printed on Fri Sep 24 10:45:24 2021
 
 # Variables
 
@@ -23,40 +23,30 @@ WSLENV = VSCODE_WSL_EXT_LOCATION/up
 VSCODE_AGENT_FOLDER = /home/drm2010/.vscode-server
 # environment
 VSCODE_LOG_NATIVE = false
-# makefile (from 'makefile', line 29)
-TARGET = $(MAINPROG)$(EXE)
 # environment
 NVM_INC = /home/drm2010/.nvm/versions/node/v16.3.0/include/node
 # automatic
 ?D = $(patsubst %/,%,$(dir $?))
 # environment
 GRADLE_HOME = /home/drm2010/.sdkman/candidates/gradle/current
-# makefile (from 'makefile', line 19)
+# makefile (from 'makefile', line 13)
 CPPFLAGS = -g -std=c++2a -MMD -pthread -D_GLIBCXX_DEBUG -Wall
 # automatic
 @D = $(patsubst %/,%,$(dir $@))
-# makefile (from 'makefile', line 22)
+# makefile (from 'makefile', line 16)
 EXE = 
 # automatic
 @F = $(notdir $@)
-# makefile (from 'makefile', line 3)
-ASST = $(notdir ${DIR})
 # makefile
 CURDIR := /mnt/c/Users/drm20/projects/cs480-assg1/sokoban-solver
-# makefile (from 'makefile', line 34)
-LINK = g++ $(CPPFLAGS)
 # makefile
 SHELL = /bin/sh
-# makefile (from 'makefile', line 21)
+# makefile (from 'makefile', line 15)
 RM = /bin/rm -rf
 # environment
 VSCODE_NLS_CONFIG = {"locale":"en","availableLanguages":{}}
 # environment
 _ = /home/drm2010/.vscode-server/bin/507ce72a4466fbb27b715c3722558bb15afa9f48/node
-# makefile (from 'makefile', line 28)
-CFLAGS = -g
-# makefile (from 'makefile', line 31)
-MAINCPPS = $(filter-out unittest.cpp test%.cpp, $(CPPS))
 # makefile (from 'make.dep', line 1)
 MAKEFILE_LIST :=  makefile make.dep
 # 'override' directive
@@ -86,31 +76,25 @@ SDKMAN_PLATFORM = linuxx64
 # environment
 VSCODE_LOG_STACK = false
 # environment
-VSCODE_IPC_HOOK_CLI = /mnt/wslg/runtime-dir/vscode-ipc-b4523a4e-b4bd-4395-afdb-58796ad169af.sock
-# makefile (from 'makefile', line 46)
-DEPENDENCIES = $(CPPS:%.cpp=%.d)
+VSCODE_IPC_HOOK_CLI = /mnt/wslg/runtime-dir/vscode-ipc-2d870601-e33a-4567-bb1b-b9a9dc342304.sock
 # default
 .FEATURES := target-specific order-only second-expansion else-if shortest-stem undefine oneshell archives jobserver output-sync check-symlink load
-# makefile (from 'makefile', line 2)
-DIR = ${PWD}
 # environment
 LS_COLORS = rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:
 # automatic
 %F = $(notdir $%)
 # environment
-DISPLAY = 172.23.48.1:0
+DISPLAY = 192.168.176.1:0
 # environment
 VSCODE_PIPE_LOGGING = true
 # environment
 PWD = /mnt/c/Users/drm20/projects/cs480-assg1/sokoban-solver
-# makefile (from 'makefile', line 45)
-TESTOBJS = $(TESTCPPS:%.cpp=%.o)
 # default
 .LOADED := 
-# makefile (from 'makefile', line 20)
+# makefile (from 'makefile', line 14)
 LFLAGSx = -fuse-ld=gold -pthread
 # environment
-WSL_INTEROP = /run/WSL/11_interop
+WSL_INTEROP = /run/WSL/2928_interop
 # environment
 PULSE_SERVER = /mnt/wslg/PulseServer
 # environment
@@ -139,16 +123,12 @@ MAKE = $(MAKE_COMMAND)
 MAKECMDGOALS := all
 # environment
 SHLVL = 0
-# makefile (from 'makefile', line 4)
-CC = gcc
 # default
 MAKE_VERSION := 4.2.1
 # environment
 USER = drm2010
 # makefile
 .DEFAULT_GOAL := all
-# makefile (from 'makefile', line 44)
-MAINOBJS = $(MAINCPPS:%.cpp=%.o)
 # environment
 NAME = LAPTOP-GQT7GIAQ
 # automatic
@@ -179,12 +159,8 @@ MAKEFILES :=
 <F = $(notdir $<)
 # environment
 LIBGL_ALWAYS_INDIRECT = 1
-# makefile (from 'makefile', line 5)
-CXX = g++
 # environment
 SDKMAN_CANDIDATES_DIR = /home/drm2010/.sdkman/candidates
-# makefile (from 'makefile', line 30)
-CPPS = $(wildcard *.cpp)
 # environment
 LC_ALL = C
 # environment
@@ -203,22 +179,16 @@ VSCODE_INJECT_NODE_MODULE_LOOKUP_PATH = /home/drm2010/.vscode-server/bin/507ce72
 .RECIPEPREFIX := 
 # environment
 PROJECTS = /mnt/c/Users/drm20/projects
-# makefile (from 'makefile', line 32)
-TESTCPPS = $(filter-out $(MAINPROG).cpp, $(CPPS))
 # environment
 LANG = C
 # environment
 TERM = xterm-256color
 # environment
 VSCODE_EXTHOST_WILL_SEND_SOCKET = true
-# makefile (from 'makefile', line 1)
-MAINPROG = sokoban-solver
 # environment
 WSL_DISTRO_NAME = Ubuntu-20.04
-# environment
-MOTD_SHOWN = update-motd
 # variable set hash-table stats:
-# Load=103/1024=10%, Rehash=0, Collisions=7/148=5%
+# Load=88/1024=9%, Rehash=0, Collisions=4/119=3%
 
 # Pattern-specific Variable Values
 
@@ -226,95 +196,104 @@ MOTD_SHOWN = update-motd
 
 # Directories
 
-# . (device 65, inode 4785074605348068): 34 files, no impossibilities.
+# . (device 65, inode 4785074605348068): 42 files, no impossibilities.
 
-# 34 files, no impossibilities in 1 directories.
+# 42 files, no impossibilities in 1 directories.
 
 # Implicit Rules
 
-%.d: %.cpp
-#  recipe to execute (from 'makefile', line 51):
-	touch $@
-
-%.o: %.cpp
-#  recipe to execute (from 'makefile', line 54):
-	$(CXX) $(CPPFLAGS) -o $@ -c $*.cpp
-
-# 2 implicit rules, 0 (0.0%) terminal.
+# No implicit rules.
 
 # Files
 
-app.d: app.cpp
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: 'app'
-#  Last modified 2021-09-22 09:16:05.2813243
+bfAlgorithm.o: bfAlgorithm.cpp bfAlgorithm.h map.h
+#  Implicit rule search has not been done.
+#  Last modified 2021-09-24 10:17:09.680364
 #  File has been updated.
 #  Successfully updated.
-#  recipe to execute (from 'makefile', line 51):
-	touch $@
+#  recipe to execute (from 'makefile', line 39):
+	g++ $(CPPFLAGS) -c bfAlgorithm.cpp
 
-all: sokoban-solver unittest
+all: bfsearch dfsearch
 #  Command line target.
 #  Implicit rule search has been done.
 #  File does not exist.
 #  File has been updated.
 #  Successfully updated.
 
-position.o: position.cpp position.cpp position.h
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: 'position'
-#  Last modified 2021-09-21 12:05:27.8969732
-#  File has been updated.
-#  Successfully updated.
-#  recipe to execute (from 'makefile', line 54):
-	$(CXX) $(CPPFLAGS) -o $@ -c $*.cpp
+position.o: position.cpp position.h position.cpp position.h
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  recipe to execute (from 'makefile', line 33):
+	g++ $(CPPFLAGS) -c position.cpp
 
-map.d: map.cpp
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: 'map'
-#  Last modified 2021-09-22 09:16:03.7785831
+dfAlgorithm.o: dfAlgorithm.cpp dfAlgorithm.h map.h
+#  Implicit rule search has not been done.
+#  Last modified 2021-09-24 10:28:23.0393519
 #  File has been updated.
 #  Successfully updated.
-#  recipe to execute (from 'makefile', line 51):
-	touch $@
+#  recipe to execute (from 'makefile', line 45):
+	g++ $(CPPFLAGS) -c dfAlgorithm.cpp
 
-app.o: app.cpp app.cpp map.h position.h search.h
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: 'app'
-#  Last modified 2021-09-22 09:16:05.3303229
-#  File has been updated.
-#  Successfully updated.
- 
-#  recipe to execute (from 'makefile', line 54):
-	$(CXX) $(CPPFLAGS) -o $@ -c $*.cpp
+app.o: app.cpp map.h position.h search.h
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 # Not a target:
 makefile:
 #  Implicit rule search has been done.
-#  Last modified 2021-09-22 09:16:00.5954528
+#  Last modified 2021-09-24 10:43:14.1216416
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+bfsearch.cpp:
+#  Implicit rule search has been done.
+#  Last modified 2021-09-24 10:10:12.7876878
 #  File has been updated.
 #  Successfully updated.
 
 # Not a target:
 search.h:
-#  Implicit rule search has been done.
-#  Last modified 2021-09-22 09:10:58.3761891
-#  File has been updated.
-#  Successfully updated.
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
-map.o: map.cpp map.cpp map.h position.h
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: 'map'
-#  Last modified 2021-09-22 09:16:03.9035825
+map.o: map.cpp map.h position.h map.cpp map.h position.h
+#  Implicit rule search has not been done.
+#  Last modified 2021-09-24 10:14:28.4221517
 #  File has been updated.
 #  Successfully updated.
-#  recipe to execute (from 'makefile', line 54):
-	$(CXX) $(CPPFLAGS) -o $@ -c $*.cpp
+#  recipe to execute (from 'makefile', line 36):
+	g++ $(CPPFLAGS) -c map.cpp
 
 # Not a target:
 search.cpp:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+bfAlgorithm.h:
 #  Implicit rule search has been done.
-#  Last modified 2021-09-22 09:11:06.247098
+#  Last modified 2021-09-24 10:04:47.1109732
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+ 
+dfsearch.cpp:
+#  Implicit rule search has been done.
+#  Last modified 2021-09-24 10:14:18.1074727
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+bfAlgorithm.cpp:
+#  Implicit rule search has been done.
+#  Last modified 2021-09-24 10:06:56.2929338
 #  File has been updated.
 #  Successfully updated.
 
@@ -324,12 +303,12 @@ search.cpp:
 #  Modification time never checked.
 #  File has not been updated.
 
-make.dep: map.d search.d position.d app.d
+make.dep:
 #  Implicit rule search has not been done.
-#  Last modified 2021-09-22 09:16:15.1783986
+#  Last modified 2021-09-24 09:47:54.6707479
 #  File has been updated.
 #  Successfully updated.
-#  recipe to execute (from 'makefile', line 80):
+#  recipe to execute (from 'makefile', line 64):
 	-cat $(DEPENDENCIES) > $@
 
 # Not a target:
@@ -339,106 +318,121 @@ position.h:
 #  File has been updated.
 #  Successfully updated.
 
-search.d: search.cpp
+# Not a target:
+dfAlgorithm.h:
 #  Implicit rule search has been done.
-#  Implicit/static pattern stem: 'search'
-#  Last modified 2021-09-22 09:16:04.6393019
+#  Last modified 2021-09-24 10:09:26.6423865
 #  File has been updated.
 #  Successfully updated.
-#  recipe to execute (from 'makefile', line 51):
-	touch $@
 
 clean:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  recipe to execute (from 'makefile', line 68):
+#  recipe to execute (from 'makefile', line 52):
 	-/bin/rm -rf *.d *.o $(TARGET) unittest$(EXE) docs
 
 # Not a target:
 position.cpp:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+dfAlgorithm.cpp:
 #  Implicit rule search has been done.
-#  Last modified 2021-09-20 12:16:08.1714604
+#  Last modified 2021-09-24 10:09:38.6566015
 #  File has been updated.
 #  Successfully updated.
 
-unittest: map.o search.o position.o app.o
+unittest:
 #  Implicit rule search has not been done.
-#  Last modified 2021-09-22 09:16:06.8603945
-#  File has been updated.
-#  Successfully updated.
-#  recipe to execute (from 'makefile', line 76):
+#  Modification time never checked.
+#  File has not been updated.
+#  recipe to execute (from 'makefile', line 60):
 	$(LINK) $(FLAGS) -o $@ $^ $(LFLAGS)
 
-position.d: position.cpp
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: 'position'
-#  Last modified 2021-09-22 08:34:16.4407766
+bfsearch: map.o bfAlgorithm.o bfsearch.o
+#  Implicit rule search has not been done.
+#  Last modified 2021-09-24 10:28:22.0472559
 #  File has been updated.
 #  Successfully updated.
-#  recipe to execute (from 'makefile', line 51):
-	touch $@
+#  recipe to execute (from 'makefile', line 25):
+	g++ $(CPPFLAGS) map.o bfAlgorithm.o bfsearch.o
+	mv a.out bfsearch
+
+bfsearch.o: bfsearch.cpp bfAlgorithm.h map.h
+#  Implicit rule search has not been done.
+#  Last modified 2021-09-24 10:28:21.1841046
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'makefile', line 42):
+	g++ $(CPPFLAGS) -c bfsearch.cpp
 
 # Not a target:
 app.cpp:
-#  Implicit rule search has been done.
-#  Last modified 2021-09-21 13:03:22.3794832
-#  File has been updated.
-#  Successfully updated.
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 # Not a target:
 map.h:
 #  Implicit rule search has been done.
-#  Last modified 2021-09-22 09:14:06.5824244
+#  Last modified 2021-09-22 11:07:15.9081396
 #  File has been updated.
 #  Successfully updated.
 
-search.o: search.cpp search.cpp search.h map.h position.h
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: 'search'
-#  Last modified 2021-09-22 09:16:04.7253017
-#  File has been updated.
-#  Successfully updated.
-#  recipe to execute (from 'makefile', line 54):
-	$(CXX) $(CPPFLAGS) -o $@ -c $*.cpp
-
-sokoban-solver: map.o search.o position.o app.o
+search.o: search.cpp search.h map.h position.h
 #  Implicit rule search has not been done.
-#  Last modified 2021-09-22 09:16:06.0883944
-#  File has been updated.
-#  Successfully updated.
-#  recipe to execute (from 'makefile', line 63):
-	$(LINK) $(FLAGS) -o $(TARGET) $^ $(LFLAGS)
+#  Modification time never checked.
+#  File has not been updated.
 
 documentation:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  recipe to execute (from 'makefile', line 71):
+#  recipe to execute (from 'makefile', line 55):
 	-mkdir docs
 	doxygen Doxyfile
+
+dfsearch: map.o dfAlgorithm.o dfsearch.o
+#  Implicit rule search has not been done.
+#  Last modified 2021-09-24 10:28:24.4884684
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'makefile', line 29):
+	g++ $(CPPFLAGS) map.o dfAlgorithm.o dfsearch.o
+	mv a.out dfsearch
+
+dfsearch.o: dfsearch.cpp dfAlgorithm.h map.h
+#  Implicit rule search has not been done.
+#  Last modified 2021-09-24 10:28:23.6831602
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'makefile', line 48):
+	g++ $(CPPFLAGS) -c dfsearch.cpp
 
 # Not a target:
 map.cpp:
 #  Implicit rule search has been done.
-#  Last modified 2021-09-21 12:53:06.6641041
+#  Last modified 2021-09-24 09:28:36.4122596
 #  File has been updated.
 #  Successfully updated.
 
 # files hash-table stats:
-# Load=24/1024=2%, Rehash=0, Collisions=0/89=0%
+# Load=31/1024=3%, Rehash=0, Collisions=1/90=1%
 # VPATH Search Paths
 
 # No 'vpath' search paths.
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 48 / storage = 414 B / avg = 8 B
-# current buf: size = 8162 B / used = 414 B / count = 48 / avg = 8 B
+# strcache buffers: 1 (0) / strings = 52 / storage = 541 B / avg = 10 B
+# current buf: size = 8162 B / used = 541 B / count = 52 / avg = 10 B
 
-# strcache performance: lookups = 120 / hit rate = 60%
+# strcache performance: lookups = 125 / hit rate = 58%
 # hash-table stats:
-# Load=48/8192=1%, Rehash=0, Collisions=5/120=4%
-# Finished Make data base on Wed Sep 22 09:16:15 2021
+# Load=52/8192=1%, Rehash=0, Collisions=10/125=8%
+# Finished Make data base on Fri Sep 24 10:45:24 2021
 
  

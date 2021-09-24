@@ -1,4 +1,4 @@
-#include "search.h"
+#include "bf_search.h"
 #include "map.h"
 #include <string>
 #include <sstream>
@@ -6,7 +6,7 @@
 
 using namespace std;
 
-string backTrack(Map *s)
+string bf_backTrack(Map *s)
 {
     // s->printMap();
 
@@ -30,13 +30,13 @@ string backTrack(Map *s)
     return solutionString;
 }
 
-Search::Search(Map &root)
+BF_SEARCH::BF_SEARCH(Map &root)
 {
     frontier.push(&root);
     solutionPath = "";
 }
 
-string Search::expand()
+string BF_SEARCH::expand()
 {
     Map *parent, *temp = nullptr;
     while ((temp == nullptr) || !(temp->goalReached()))
@@ -62,5 +62,5 @@ string Search::expand()
     }
 
     // return something when temp has reached goal
-    return backTrack(temp);
+    return bf_backTrack(temp);
 }
