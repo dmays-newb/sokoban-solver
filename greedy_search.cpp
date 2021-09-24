@@ -1,4 +1,4 @@
-#include "df_search.h"
+#include "greedy_search.h"
 #include "map.h"
 #include <string>
 #include <sstream>
@@ -6,18 +6,18 @@
 
 using namespace std;
 
-DF_SEARCH::DF_SEARCH(Map &root)
+GREEDY_SEARCH::GREEDY_SEARCH(Map &root)
 {
     frontier.push(&root);
     solutionPath = "";
 }
 
-string DF_SEARCH::expand()
+string GREEDY_SEARCH::expand()
 {
     Map *parent, *temp = nullptr;
     while ((temp == nullptr) || !(temp->goalReached()))
     {
-        parent = frontier.top();
+        parent = frontier.front();
         frontier.pop();
         for (int i = 0; i < 4; i++)
         {

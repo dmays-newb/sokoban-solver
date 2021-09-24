@@ -1,6 +1,7 @@
 map.o: map.cpp map.h position.h
 bf_search.o: bf_search.cpp bf_search.h map.h position.h
-search.o: search.cpp search.h map.h position.h
 position.o: position.cpp position.h
 df_search.o: df_search.cpp df_search.h map.h position.h
-app.o: app.cpp map.h position.h bf_search.h df_search.h
+greedy_search.o: greedy_search.cpp greedy_search.h map.h position.h
+search.o: search.cpp search.h map.h position.h
+app.o: app.cpp map.h position.h bf_search.h df_search.h greedy_search.h

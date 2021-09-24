@@ -49,18 +49,7 @@ public:
     void moveBlock(int index, unsigned int dir);
     bool goalReached();
     void keyGenerator();
-    // ! Destructor?
+    std::string backTrack();
 };
-
-// custom hash function (functor) for map
-// class map_hash
-// {
-// public:
-//     std::size_t operator()(const Map &m) const
-//     {
-//         long int hash = stol(m.getKey());
-//         return hash;
-//     }
-// };
 
 #endif // MAP_H

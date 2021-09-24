@@ -1,5 +1,6 @@
 #include "map.h"
 #include <algorithm>
+#include <sstream>
 // #define DEBUG
 // #define DEBUG_READ
 
@@ -274,4 +275,26 @@ void Map::keyGenerator()
     key.append(std::to_string(robot.getY()));
 
     uniqKey = key;
+}
+
+std::string Map::backTrack()
+{
+    string solutionString = "";
+    string tempString;
+    Map *current = this;
+    while (current->getParent() != nullptr)
+    {
+        current->printMap();
+        cout << "Current Dir: " << current->getDirectionFromParent() << endl;
+        cout << "Robot Position: ";
+        current->getRobot().print();
+        cout << endl;
+        std::stringstream tmp;
+        tmp << current->getDirectionFromParent();
+        tempString = tmp.str();
+        solutionString.append(tempString);
+        current = current->getParent();
+    }
+
+    return solutionString;
 }

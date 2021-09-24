@@ -6,30 +6,6 @@
 
 using namespace std;
 
-string bf_backTrack(Map *s)
-{
-    // s->printMap();
-
-    string solutionString = "";
-    string tempString;
-    Map *current = s;
-    while (current->getParent() != nullptr)
-    {
-        current->printMap();
-        cout << "Current Dir: " << current->getDirectionFromParent() << endl;
-        cout << "Robot Position: ";
-        current->getRobot().print();
-        cout << endl;
-        std::stringstream tmp;
-        tmp << current->getDirectionFromParent();
-        tempString = tmp.str();
-        solutionString.append(tempString);
-        current = current->getParent();
-    }
-
-    return solutionString;
-}
-
 BF_SEARCH::BF_SEARCH(Map &root)
 {
     frontier.push(&root);
@@ -62,5 +38,5 @@ string BF_SEARCH::expand()
     }
 
     // return something when temp has reached goal
-    return bf_backTrack(temp);
+    return temp->backTrack();
 }

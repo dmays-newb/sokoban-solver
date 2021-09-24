@@ -6,6 +6,7 @@
 #include "map.h"
 #include "bf_search.h"
 #include "df_search.h"
+#include "greedy_search.h"
 
 // #define TESTGOAL
 // #define HASHTEST
@@ -45,6 +46,11 @@ int main(int argc, char *argv[])
     else if (algorithInput == "dfs")
     {
         DF_SEARCH findSolution(initialMap);
+        solution = findSolution.expand();
+    }
+    else if (algorithInput == "greedy")
+    {
+        GREEDY_SEARCH findSolution(initialMap);
         solution = findSolution.expand();
     }
 
