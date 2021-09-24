@@ -13,7 +13,7 @@ string bf_backTrack(Map *s)
     string solutionString = "";
     string tempString;
     Map *current = s;
-    while (current != nullptr)
+    while (current->getParent() != nullptr)
     {
         current->printMap();
         cout << "Current Dir: " << current->getDirectionFromParent() << endl;

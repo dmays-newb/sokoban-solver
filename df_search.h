@@ -13,6 +13,7 @@ private:
     std::unordered_map<long, Map *> closedList;
     std::stack<Map *> frontier;
     std::string solutionPath;
+    Map *root;
 
 public:
     DF_SEARCH(Map &root);
