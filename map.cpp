@@ -181,6 +181,7 @@ void Map::printMap()
     cout << "Robot Position:";
     robot.print();
     cout << endl;
+    cout << "Sum of Shortest Distances: " << this->sumOfShortestDistances() << endl;
 }
 
 Map *Map::findNextStateFromDirection(const unsigned int dir)
@@ -297,4 +298,23 @@ std::string Map::backTrack()
     }
 
     return solutionString;
+}
+
+int Map::sumOfShortestDistances()
+{
+    int sumOfShortDistances = 0;
+    int shortestDist;
+    int temp;
+    for (Position block : blocks)
+    {
+        shortestDist = 10000;
+        for (Position storage : storage)
+        {
+            temp = block.distanceFrom(storage);
+            if (temp < shortestDist)
+                shortestDist = temp;
+        }
+        sumOfShortDistances += shortestDist;
+    }
+    return sumOfShortDistances;
 }

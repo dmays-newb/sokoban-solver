@@ -1,8 +1,6 @@
 #include "greedy_search.h"
 #include "map.h"
 #include <string>
-#include <sstream>
-#include <cmath>
 
 using namespace std;
 
@@ -17,7 +15,7 @@ string GREEDY_SEARCH::expand()
     Map *parent, *temp = nullptr;
     while ((temp == nullptr) || !(temp->goalReached()))
     {
-        parent = frontier.front();
+        parent = frontier.top();
         frontier.pop();
         for (int i = 0; i < 4; i++)
         {

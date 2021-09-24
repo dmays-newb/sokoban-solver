@@ -1,4 +1,5 @@
 #include "position.h"
+#include <cmath>
 
 // provide the location of the adjacent space
 Position::Position(const Position &in, const unsigned int dir)
@@ -27,4 +28,12 @@ Position::Position(const Position &in, const unsigned int dir)
 unsigned int Position::position_hash()
 {
     return (((x + y) * (x + y + 1)) / 2) + y;
+}
+
+int Position::distanceFrom(const Position &rhs)
+{
+    int totalDistance = 0;
+    totalDistance += abs(x - rhs.x);
+    totalDistance += abs(y - rhs.y);
+    return totalDistance;
 }

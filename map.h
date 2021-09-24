@@ -41,7 +41,7 @@ public:
     Map *getParent() { return parent; }
 
     // find legal moves to next state
-    // receives 0 - 3; u, r, d, left
+    // receives 0 - 3; u, r, d, l
     Map *findNextStateFromDirection(const unsigned int dir);
     bool pushBlockIsLegal(const Position);
     bool cannotMove(std::vector<Position> obs, Position pot);
@@ -50,6 +50,7 @@ public:
     bool goalReached();
     void keyGenerator();
     std::string backTrack();
+    int sumOfShortestDistances();
 };
 
 #endif // MAP_H

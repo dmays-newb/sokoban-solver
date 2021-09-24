@@ -21,6 +21,7 @@ public:
     bool operator<(const Position &rhs);
     void print();
     unsigned int position_hash();
+    int distanceFrom(const Position &rhs);
 };
 
 inline Position::Position()
