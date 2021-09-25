@@ -1,6 +1,7 @@
 #include "greedy_search.h"
 #include "map.h"
 #include <string>
+#include <chrono>
 
 using namespace std;
 
@@ -12,6 +13,7 @@ GREEDY_SEARCH::GREEDY_SEARCH(Map &root)
 
 string GREEDY_SEARCH::expand()
 {
+    auto t1 = chrono::high_resolution_clock::now();
     Map *parent, *temp = nullptr;
     while ((temp == nullptr) || !(temp->goalReached()))
     {
@@ -26,6 +28,7 @@ string GREEDY_SEARCH::expand()
             {
                 if (!(closedList.contains(temp->getKey())))
                 {
+                    temp->sumDistances();
                     closedList.emplace(temp->getKey(), temp);
                     frontier.push(temp);
                     if (temp->goalReached())
@@ -34,6 +37,9 @@ string GREEDY_SEARCH::expand()
             }
         }
     }
+    auto t2 = chrono::high_resolution_clock::now();
+    cout << "Greedy Algorithm took " << chrono::duration_cast<chrono::milliseconds>(t2 - t1).count()
+         << " milliseconds\n";
 
     // return something when temp has reached goal
     return temp->backTrack();

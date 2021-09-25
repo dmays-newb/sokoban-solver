@@ -1,5 +1,6 @@
 #ifndef MAP_H_INCLUDED
 #define MAP_H_INCLUDED
+
 #include <fstream>
 #include <functional>
 #include <iostream>
@@ -15,42 +16,42 @@ private:
     static std::vector<Position> walls;
     static std::vector<Position> storage;
 
+    int sumOfDistances;
+    int movesToGetHere;
     int directionFromParent;
     Map *parent;
-    // bool goalState;
 
     std::vector<Position> blocks;
     Position robot;
     std::string uniqKey;
 
 public:
-    // construct root state from a map file input
     Map(std::ifstream &mapFile);
-
-    // constructor for child states
     Map(Map *rhs, int dir);
-
-    // initialize map spaces from inputstate
     void initState(std::ifstream &mapFile);
-
     bool operator==(const Map &rhs);
     void printMap();
     long long getKey() const { return stoll(uniqKey); }
     Position getRobot() const { return robot; }
     int getDirectionFromParent() { return directionFromParent; }
     Map *getParent() { return parent; }
-
-    // find legal moves to next state
-    // receives 0 - 3; u, r, d, l
+    const int getSumOfDistances() { return sumOfDistances; }
     Map *findNextStateFromDirection(const unsigned int dir);
-    bool pushBlockIsLegal(const Position);
-    bool cannotMove(std::vector<Position> obs, Position pot);
+    bool pushBlockIsLegal(const Position) const;
+    bool cannotMove(std::vector<Position> obs, Position pot) const;
     void moveRobot(unsigned int dir);
     void moveBlock(int index, unsigned int dir);
-    bool goalReached();
+    bool goalReached() const;
     void keyGenerator();
     std::string backTrack();
-    int sumOfShortestDistances();
+    void sumDistances();
+    void improvedSum();
+    int findCornerBlocks() const;
+    bool wallPresent(int, int) const;
+    bool storagePresent(Position) const;
+    void incrementMoves() { movesToGetHere++; }
+    int getMoves() { return movesToGetHere; }
+    void astarSum();
 };
 
 #endif // MAP_H

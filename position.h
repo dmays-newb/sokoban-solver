@@ -13,6 +13,7 @@ public:
     Position();
     // Takes direction input and creates new position
     Position(const Position &in, const unsigned int dir);
+    Position(int, int);
     unsigned int getX() { return x; }
     unsigned int getY() { return y; }
     void setX(unsigned int in) { x = in; }

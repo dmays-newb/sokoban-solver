@@ -1,3 +1,6 @@
+#ifndef BFSEARCH_H_INCLUDED
+#define BFSEARCH_H_INCLUDED
+
 #include <iostream>
 #include <unordered_map>
 #include <queue>
@@ -17,3 +20,5 @@ public:
     BF_SEARCH(Map &root);
     std::string expand();
 };
+
+#endif //BFSEARCH

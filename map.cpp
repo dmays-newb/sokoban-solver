@@ -1,8 +1,6 @@
 #include "map.h"
 #include <algorithm>
 #include <sstream>
-// #define DEBUG
-// #define DEBUG_READ
 
 using namespace std;
 
@@ -20,13 +18,11 @@ void getMapDimensions(ifstream &mapFile, int &w, int &h)
             w = line.size();
         h = h + 1;
     }
-
-#ifdef DEBUG
-    cout << "map height: " << h << endl;
-    cout << "map width: " << w << endl;
-#endif // DEBUG
 }
 
+/*
+* Print out map from filestream --- TESTING PURPOSES
+*/
 void printMapFromFile(ifstream &mapFile)
 {
     string line = "";
@@ -39,6 +35,9 @@ void printMapFromFile(ifstream &mapFile)
     }
 }
 
+/*
+* Assigns wall, storage, block, and robot positions from input filestream
+*/
 void Map::initState(ifstream &mapFile)
 {
     char current;
@@ -85,14 +84,21 @@ void Map::initState(ifstream &mapFile)
     }
 }
 
+/*
+* Copy constructor which also takes direction of movement from parent node
+*/
 Map::Map(Map *rhs, int dir)
 {
     blocks = rhs->blocks;
     robot = rhs->robot;
     directionFromParent = dir;
     parent = rhs;
+    movesToGetHere = rhs->movesToGetHere;
 }
 
+/*
+* Constructor which takes input file stream
+*/
 Map::Map(ifstream &mapFile)
 {
     int width = 0, height = 0;
@@ -101,6 +107,8 @@ Map::Map(ifstream &mapFile)
     mapHeight = height;
     parent = nullptr;
     int directionFromParent = -1;
+    sumOfDistances = 0;
+    movesToGetHere = 0;
 
     // Get back to beginning of file
     mapFile.clear();
@@ -110,35 +118,12 @@ Map::Map(ifstream &mapFile)
     initState(mapFile);
 
     keyGenerator();
-
-#ifdef DEBUG_READ
-    cout << "Walls: ";
-    for (Position w : walls)
-    {
-        cout << w.x << ',' << w.y << "; ";
-    }
-    cout << endl;
-
-    cout << "Blocks: ";
-    for (Position b : blocks)
-    {
-        cout << b.x << ',' << b.y << "; ";
-    }
-    cout << endl;
-
-    cout << "Storage: ";
-    for (Position s : storage)
-    {
-        cout << s.x << ',' << s.y << "; ";
-    }
-    cout << endl;
-
-    cout << "Robot Position: " << robot.x << ',' << robot.y;
-#endif // DEBUG
 }
 
-// checks potential position (pot) against positions (walls or blocks)
-bool Map::cannotMove(vector<Position> obs, Position pot)
+/*
+* Checks potential position (pot) against positions (walls or blocks)
+*/
+bool Map::cannotMove(vector<Position> obs, Position pot) const
 {
     for (Position o : obs)
     {
@@ -148,9 +133,11 @@ bool Map::cannotMove(vector<Position> obs, Position pot)
     return false;
 }
 
-// Checks if there is a wall or another block in the direction of travel of...
-// .. the pushed block
-bool Map::pushBlockIsLegal(const Position block)
+/*
+* Checks if there is a wall or another block in the direction of travel of...
+*.. the pushed block
+*/
+bool Map::pushBlockIsLegal(const Position block) const
 {
     if (cannotMove(walls, block) || cannotMove(blocks, block))
         return false;
@@ -164,6 +151,9 @@ bool Map::operator==(const Map &rhs)
     return false;
 }
 
+/*
+* Prints Map objects attributes -- FOR TESTING PURPOSES
+*/
 void Map::printMap()
 {
     cout << "Block Positions" << endl;
@@ -181,20 +171,23 @@ void Map::printMap()
     cout << "Robot Position:";
     robot.print();
     cout << endl;
-    cout << "Sum of Shortest Distances: " << this->sumOfShortestDistances() << endl;
+    // cout << "Sum of Shortest Distances: " << this->sumDistances() << endl;
 }
 
+/*
+* Creates a new Map object (state)
+* Checks if move is legal
+* Makes legal block move and/or robot move
+* Returns pointer to new Map object
+*/
 Map *Map::findNextStateFromDirection(const unsigned int dir)
 {
 
     // 0 - 3: up, right, down, left directions
     Position potentialMove(robot, dir);
-    // cout << "Robot Position: " << robot.getX() << ',' << robot.getY() << '-'
-    //      << "Potential move position" << potentialMove.getX() << ',' << potentialMove.getY() << endl;
 
     if (cannotMove(walls, potentialMove))
     {
-        // cout << "Can't move into wall" << endl;
         return nullptr;
     }
     if (cannotMove(blocks, potentialMove))
@@ -203,29 +196,20 @@ Map *Map::findNextStateFromDirection(const unsigned int dir)
 
         auto it = find(blocks.begin(), blocks.end(), potentialMove);
         int blockIndex = it - blocks.begin();
-
-        // cout << "Potential Block Move Position: " << potentialBlockMove.getX() << ',' << potentialBlockMove.getY() << endl;
         if (pushBlockIsLegal(potentialBlockMove))
         {
-            // cout << "Can move block" << endl;
             int dirToChild = (int)dir;
             Map *newMap = new Map(this, dirToChild);
             newMap->moveBlock(blockIndex, dir);
             newMap->keyGenerator();
             return newMap;
         }
-        // cout << "Cant move block" << endl;
         return nullptr;
     }
-    // cout << "----------------------" << '\n'
-    //      << "can move into space. "
-    //      << "direction #: " << dir
-    //      << ". Robot Original Position: ";
-    // this->robot.print();
-    // cout << endl;
     int dirToChild = (int)dir;
     Map *newMap = new Map(this, dirToChild);
     newMap->moveRobot(dir);
+    newMap->sumDistances();
     newMap->keyGenerator();
     return newMap;
 }
@@ -245,7 +229,11 @@ void Map::moveBlock(int index, unsigned int dir)
     moveRobot(dir);
 }
 
-bool Map::goalReached()
+/*
+* Checks current Map's blocks against storage to see if..
+* .. all storage are filled
+*/
+bool Map::goalReached() const
 {
     int matchCount = 0;
     for (Position s : storage)
@@ -261,6 +249,9 @@ bool Map::goalReached()
     return false;
 }
 
+/*
+* Generates a unique key based on block and robot positions
+*/
 void Map::keyGenerator()
 {
     string key = "";
@@ -278,6 +269,9 @@ void Map::keyGenerator()
     uniqKey = key;
 }
 
+/*
+* Produces string of directions (0-3) from solution state back to root
+*/
 std::string Map::backTrack()
 {
     string solutionString = "";
@@ -285,22 +279,20 @@ std::string Map::backTrack()
     Map *current = this;
     while (current->getParent() != nullptr)
     {
-        current->printMap();
-        cout << "Current Dir: " << current->getDirectionFromParent() << endl;
-        cout << "Robot Position: ";
-        current->getRobot().print();
-        cout << endl;
         std::stringstream tmp;
         tmp << current->getDirectionFromParent();
         tempString = tmp.str();
         solutionString.append(tempString);
         current = current->getParent();
     }
-
     return solutionString;
 }
 
-int Map::sumOfShortestDistances()
+/*
+* Sums the distance of each block to its closes storage space
+* Used as part of Manhattan Heuristic
+*/
+void Map::sumDistances()
 {
     int sumOfShortDistances = 0;
     int shortestDist;
@@ -316,5 +308,96 @@ int Map::sumOfShortestDistances()
         }
         sumOfShortDistances += shortestDist;
     }
-    return sumOfShortDistances;
+    sumOfDistances = sumOfShortDistances;
+}
+
+/*
+* Sums up the number of blocks in a state which are in a corner
+* minus those that are also occupied by storage spaces
+* Used for improving on Manhattan Heuristic
+*/
+int Map::findCornerBlocks() const
+{
+    int cornerBlockCount = 0;
+    unsigned int x, y;
+    for (Position block : blocks)
+    {
+        y = block.getY();
+        x = block.getX();
+
+        // wall to left of block
+        if (wallPresent(x - 1, y))
+        {
+            // wall present above
+            if (wallPresent(x - 1, y - 1))
+            {
+                if (!(storagePresent(block)))
+                    cornerBlockCount++;
+                break;
+            }
+            // wall present below
+            if (wallPresent(x - 1, y + 1))
+            {
+                if (!(storagePresent(block)))
+                    cornerBlockCount++;
+            }
+        }
+        // wall to right of block
+        if (wallPresent(x + 1, y))
+        {
+            // wall present above
+            if (wallPresent(x + 1, y - 1))
+            {
+                if (!(storagePresent(block)))
+                    cornerBlockCount++;
+                break;
+            }
+            // wall present below
+            if (wallPresent(x + 1, y + 1))
+            {
+                if (!(storagePresent(block)))
+                    cornerBlockCount++;
+            }
+        }
+    }
+    return cornerBlockCount;
+}
+
+/*
+* Used for improvement of Manhattan Heuristic for GREEDY_PLUS
+*/
+void Map::improvedSum()
+{
+    sumDistances();
+    sumOfDistances += findCornerBlocks();
+}
+
+bool Map::wallPresent(int x, int y) const
+{
+    Position pos(x, y);
+    for (Position wall : walls)
+    {
+        if (wall == pos)
+            return true;
+    }
+    return false;
+}
+
+bool Map::storagePresent(Position pos) const
+{
+    for (Position store : storage)
+    {
+        if (store == pos)
+            return true;
+    }
+    return false;
+}
+/*
+* Used for f(n) calculation for A* search
+*/
+void Map::astarSum()
+{
+    sumDistances();
+    sumOfDistances = 3 * sumOfDistances;
+    sumOfDistances += 2 * movesToGetHere;
 }

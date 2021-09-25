@@ -7,11 +7,49 @@
 #include "bf_search.h"
 #include "df_search.h"
 #include "greedy_search.h"
-
-// #define TESTGOAL
-// #define HASHTEST
-
+#include "greedy_plus.h"
+#include "astar.h"
 using namespace std;
+
+/*
+* Formats a final output of moves and count
+*/
+void finalOutput(std::string input)
+{
+    cout << "Solution Computed. Here are the moves: ";
+    int count = 0;
+    int temp;
+    char tempChar;
+    for (int i = input.length() - 1; i >= 0; i--)
+    {
+        count++;
+        tempChar = input[i];
+        temp = tempChar - '0';
+        switch (temp)
+        {
+        case 0:
+            cout << "Up";
+            break;
+        case 1:
+            cout << "Right";
+            break;
+        case 2:
+            cout << "Down";
+            break;
+        case 3:
+            cout << "Left";
+            break;
+        default:
+            break;
+        }
+
+        if (i != 0)
+            cout << ", ";
+        if (i % 15 == 0)
+            cout << '\n';
+    }
+    cout << "\nTotal Moves: " << count << endl;
+}
 
 int main(int argc, char *argv[])
 {
@@ -53,49 +91,20 @@ int main(int argc, char *argv[])
         GREEDY_SEARCH findSolution(initialMap);
         solution = findSolution.expand();
     }
+    else if (algorithInput == "greedy_plus")
+    {
+        GREEDY_PLUS findSolution(initialMap);
+        solution = findSolution.expand();
+    }
+    else if (algorithInput == "astar")
+    {
+        ASTAR findSolution(initialMap);
+        solution = findSolution.expand();
+    }
+    else
+        cout << algorithInput << " does not match available algorithm types. Please try again." << endl;
 
-    // Initial State
-    cout << "Potential Solution: " << solution << endl;
-
-#ifdef TESTGOAL
-
-    // ! This'll have to go into a new file .. like a factory
-    initialMap.findNextStateFromDirection(0);
-    initialMap.findNextStateFromDirection(1);
-    initialMap.findNextStateFromDirection(2);
-    initialMap.findNextStateFromDirection(3);
-
-    // Test Completion
-    initialMap.printMap();
-
-    // Test Completion of test-state-1
-    // initialMap.moveBlock(0, 3);
-    // initialMap.moveBlock(0, 3);
-    // initialMap.moveBlock(0, 3);
-    // cout << "test-state-1. Goal complete = " << initialMap.goalReached() << endl;
-
-    // Test Completion of test-state-2
-    // initialMap.moveBlock(0, 0);
-    // initialMap.moveBlock(0, 1);
-    // cout << "test-state-2. Goal complete = " << initialMap.goalReached() << endl;
-
-    // Test Completion of test-state-3
-    // initialMap.moveBlock(1, 2);
-    // initialMap.moveBlock(1, 3);
-    // initialMap.moveBlock(1, 3);
-    // initialMap.moveBlock(1, 3);
-    // initialMap.moveBlock(1, 0);
-    // initialMap.moveBlock(1, 0);
-    // initialMap.moveBlock(2, 3);
-    // initialMap.moveBlock(2, 2);
-    // cout << "test-state-3. Goal complete = " << initialMap.goalReached() << endl;
-
-#endif // TESTGOAL
-
-#ifdef HASHTEST
-    map_hash hashIt;
-    cout << "Map Hash: " << hashIt(initialMap) << endl;
-#endif // HASHTEST
+    finalOutput(solution);
 
     return 0;
 }

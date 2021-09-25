@@ -1,3 +1,6 @@
+#ifndef DFSEARCH_H_INCLUDED
+#define DFSEARCH_H_INCLUDED
+
 #include <iostream>
 #include <unordered_map>
 #include <queue>
@@ -19,3 +22,5 @@ public:
     DF_SEARCH(Map &root);
     std::string expand();
 };
+
+#endif // !DFSEARCH_H_INCLUDED

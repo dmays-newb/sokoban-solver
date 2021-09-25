@@ -25,6 +25,12 @@ Position::Position(const Position &in, const unsigned int dir)
     }
 }
 
+Position::Position(int xInput, int yInput)
+{
+    x = xInput;
+    y = yInput;
+}
+
 unsigned int Position::position_hash()
 {
     return (((x + y) * (x + y + 1)) / 2) + y;

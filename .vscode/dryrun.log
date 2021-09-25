@@ -3,24 +3,21 @@ make: Entering directory '/mnt/c/Users/drm20/projects/cs480-assg1/sokoban-solver
 touch map.d
  
 touch bf_search.d
- 
 touch position.d
  
 touch df_search.d
- 
 touch greedy_search.d
  
 touch search.d
+ 
 touch app.d
 cat map.d bf_search.d position.d df_search.d greedy_search.d search.d app.d > make.dep
  
 g++ -g -std=c++2a -MMD -pthread -D_GLIBCXX_DEBUG -Wall -o map.o -c map.cpp
- 
 g++ -g -std=c++2a -MMD -pthread -D_GLIBCXX_DEBUG -Wall -o bf_search.o -c bf_search.cpp
 g++ -g -std=c++2a -MMD -pthread -D_GLIBCXX_DEBUG -Wall -o position.o -c position.cpp
 g++ -g -std=c++2a -MMD -pthread -D_GLIBCXX_DEBUG -Wall -o df_search.o -c df_search.cpp
 g++ -g -std=c++2a -MMD -pthread -D_GLIBCXX_DEBUG -Wall -o greedy_search.o -c greedy_search.cpp
- 
 g++ -g -std=c++2a -MMD -pthread -D_GLIBCXX_DEBUG -Wall -o search.o -c search.cpp
 g++ -g -std=c++2a -MMD -pthread -D_GLIBCXX_DEBUG -Wall -o app.o -c app.cpp
 g++ -g -std=c++2a -MMD -pthread -D_GLIBCXX_DEBUG -Wall  -o sokoban-solver map.o bf_search.o position.o df_search.o greedy_search.o search.o app.o 

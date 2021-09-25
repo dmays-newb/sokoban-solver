@@ -1,5 +1,5 @@
-#ifndef GREEDYSEARCH_H_INCLUDED
-#define GREEDYSEARCH_H_INCLUDED
+#ifndef GREEDYPLUS_H_INCLUDED
+#define GREEDYPLUS_H_INCLUDED
 
 #include <iostream>
 #include <unordered_map>
@@ -9,7 +9,7 @@
 #include "map.h"
 #include "position.h"
 
-struct Heuristic
+struct ImprovedHeuristic
 {
     bool operator()(Map *a, Map *b) const
     {
@@ -17,16 +17,16 @@ struct Heuristic
     }
 };
 
-class GREEDY_SEARCH
+class GREEDY_PLUS
 {
 private:
     std::unordered_map<long, Map *> closedList;
-    std::priority_queue<Map *, std::vector<Map *>, Heuristic> frontier;
+    std::priority_queue<Map *, std::vector<Map *>, ImprovedHeuristic> frontier;
     std::string solutionPath;
 
 public:
-    GREEDY_SEARCH(Map &root);
+    GREEDY_PLUS(Map &root);
     std::string expand();
 };
 
-#endif // !GREEDYSEARCH_H_INCLUDED
+#endif // !GREEDYPLUS
