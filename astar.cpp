@@ -19,6 +19,7 @@ string ASTAR::expand()
     {
         parent = frontier.top();
         frontier.pop();
+        closedList.emplace(parent->getKey(), parent);
         for (int i = 0; i < 4; i++)
         {
             // check each direction
@@ -28,12 +29,10 @@ string ASTAR::expand()
             {
                 if (!(closedList.contains(temp->getKey())))
                 {
-                    temp->incrementMoves();
-                    temp->astarSum();
-                    closedList.emplace(temp->getKey(), temp);
-                    frontier.push(temp);
                     if (temp->goalReached())
                         break;
+                    temp->astarSum();
+                    frontier.push(temp);
                 }
             }
         }

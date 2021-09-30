@@ -1,6 +1,8 @@
 #include "map.h"
+#include <cmath>
 #include <algorithm>
 #include <sstream>
+#include <iterator>
 
 using namespace std;
 
@@ -8,6 +10,7 @@ unsigned int Map::mapWidth;
 unsigned int Map::mapHeight;
 vector<Position> Map::walls;
 vector<Position> Map::storage;
+std::string Map::rootKey;
 
 void getMapDimensions(ifstream &mapFile, int &w, int &h)
 {
@@ -97,6 +100,19 @@ Map::Map(Map *rhs, int dir)
 }
 
 /*
+* Copy constructor
+*/
+Map::Map(const Map &rhs)
+{
+    blocks = rhs.blocks;
+    robot = rhs.robot;
+    directionFromParent = -1;
+    parent = rhs.parent;
+    movesToGetHere = rhs.movesToGetHere;
+    uniqKey = rhs.uniqKey;
+}
+
+/*
 * Constructor which takes input file stream
 */
 Map::Map(ifstream &mapFile)
@@ -118,6 +134,7 @@ Map::Map(ifstream &mapFile)
     initState(mapFile);
 
     keyGenerator();
+    rootKey = uniqKey;
 }
 
 /*
@@ -319,48 +336,60 @@ void Map::sumDistances()
 int Map::findCornerBlocks() const
 {
     int cornerBlockCount = 0;
+    int wallBlockCount = 0;
     unsigned int x, y;
     for (Position block : blocks)
     {
         y = block.getY();
         x = block.getX();
 
-        // wall to left of block
-        if (wallPresent(x - 1, y))
+        if (!(storagePresent(block)))
         {
-            // wall present above
-            if (wallPresent(x - 1, y - 1))
+            // wall to left of block
+            if (wallPresent(x - 1, y))
             {
-                if (!(storagePresent(block)))
+                // wall present above
+                if (wallPresent(x - 1, y - 1))
+                {
                     cornerBlockCount++;
-                break;
+                    break;
+                }
+                // wall present below
+                else if (wallPresent(x - 1, y + 1))
+                {
+                    cornerBlockCount++;
+                }
+                else
+                    wallBlockCount++;
             }
-            // wall present below
-            if (wallPresent(x - 1, y + 1))
+            // wall to right of block
+            if (wallPresent(x + 1, y))
             {
-                if (!(storagePresent(block)))
+                // wall present above
+                if (wallPresent(x + 1, y - 1))
+                {
                     cornerBlockCount++;
-            }
-        }
-        // wall to right of block
-        if (wallPresent(x + 1, y))
-        {
-            // wall present above
-            if (wallPresent(x + 1, y - 1))
-            {
-                if (!(storagePresent(block)))
+                    break;
+                }
+                // wall present below
+                else if (wallPresent(x + 1, y + 1))
+                {
                     cornerBlockCount++;
-                break;
-            }
-            // wall present below
-            if (wallPresent(x + 1, y + 1))
-            {
-                if (!(storagePresent(block)))
-                    cornerBlockCount++;
+                }
+                else
+                    wallBlockCount++;
             }
         }
     }
-    return cornerBlockCount;
+
+    int totalBlockCount = 0;
+    if (cornerBlockCount >= 1)
+        totalBlockCount += 3;
+
+    if (wallBlockCount >= (blocks.size() / 2))
+        totalBlockCount += 2;
+
+    return totalBlockCount;
 }
 
 /*
@@ -368,7 +397,22 @@ int Map::findCornerBlocks() const
 */
 void Map::improvedSum()
 {
-    sumDistances();
+    int forwardSum = 0;
+    int shortestDist;
+    int temp;
+    for (Position block : blocks)
+    {
+        shortestDist = 10000;
+        for (Position storage : storage)
+        {
+            temp = block.distanceFrom(storage);
+            if (temp < shortestDist)
+                shortestDist = temp;
+        }
+        forwardSum += shortestDist;
+    }
+
+    sumOfDistances = forwardSum;
     sumOfDistances += findCornerBlocks();
 }
 
@@ -397,7 +441,19 @@ bool Map::storagePresent(Position pos) const
 */
 void Map::astarSum()
 {
-    sumDistances();
-    sumOfDistances = 3 * sumOfDistances;
-    sumOfDistances += 2 * movesToGetHere;
+    improvedSum();
+    // sumDistances();
+
+    int depth = 0;
+    Map *temp = parent;
+    while (temp->uniqKey != rootKey)
+    {
+        depth++;
+        if (temp->parent == nullptr)
+            break;
+        temp = temp->parent;
+    }
+    sumOfDistances *= 2;
+    depth = (int)(sqrt(depth));
+    sumOfDistances += depth;
 }

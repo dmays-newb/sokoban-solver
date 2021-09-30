@@ -19,6 +19,7 @@ string GREEDY_PLUS::expand()
     {
         parent = frontier.top();
         frontier.pop();
+        closedList.emplace(parent->getKey(), parent);
         for (int i = 0; i < 4; i++)
         {
             // check each direction
@@ -28,11 +29,10 @@ string GREEDY_PLUS::expand()
             {
                 if (!(closedList.contains(temp->getKey())))
                 {
-                    temp->improvedSum();
-                    closedList.emplace(temp->getKey(), temp);
-                    frontier.push(temp);
                     if (temp->goalReached())
                         break;
+                    temp->improvedSum();
+                    frontier.push(temp);
                 }
             }
         }

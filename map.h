@@ -15,6 +15,7 @@ private:
     static unsigned int mapHeight;
     static std::vector<Position> walls;
     static std::vector<Position> storage;
+    static std::string rootKey;
 
     int sumOfDistances;
     int movesToGetHere;
@@ -27,6 +28,7 @@ private:
 
 public:
     Map(std::ifstream &mapFile);
+    Map(const Map &rhs);
     Map(Map *rhs, int dir);
     void initState(std::ifstream &mapFile);
     bool operator==(const Map &rhs);

@@ -21,6 +21,8 @@ string BF_SEARCH::expand()
     {
         parent = frontier.front();
         frontier.pop();
+        closedList.emplace(parent->getKey(), parent);
+        // closedList.insert(parent);
         for (int i = 0; i < 4; i++)
         {
             // check each direction
@@ -30,15 +32,13 @@ string BF_SEARCH::expand()
             {
                 if (!(closedList.contains(temp->getKey())))
                 {
-                    closedList.emplace(temp->getKey(), temp);
-                    frontier.push(temp);
                     if (temp->goalReached())
                         break;
+                    frontier.push(temp);
                 }
             }
         }
     }
-
     auto t2 = chrono::high_resolution_clock::now();
     cout << "BFS Algorithm took " << chrono::duration_cast<chrono::milliseconds>(t2 - t1).count()
          << " milliseconds\n";

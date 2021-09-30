@@ -28,15 +28,14 @@ string DF_SEARCH::expand()
             {
                 if (!(closedList.contains(temp->getKey())))
                 {
-                    closedList.emplace(temp->getKey(), temp);
-                    frontier.push(temp);
                     if (temp->goalReached())
                         break;
+                    frontier.push(temp);
                 }
             }
         }
+        closedList.emplace(parent->getKey(), parent);
     }
 
-    // return something when temp has reached goal
     return temp->backTrack();
 }
